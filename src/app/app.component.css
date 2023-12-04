@@ -1,0 +1,44 @@
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  z-index: 2;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: rgb(194,167,144);
+  background: linear-gradient(90deg,
+  rgba(194,167,144,1) 0%,
+  rgba(150,135,125,1) 31%,
+  rgba(139,176,166,1) 65%,
+  rgba(204,192,167,1) 100%);
+}
+
+li {
+  float: right;
+}
+
+li button {
+  display: block;
+  color: white;
+  background-color: TRANSPARENT;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border: none;
+}
+
+li button:hover {
+  background-color: #ccc0a7;
+}
+
+li button.active {
+  background-color: #8bb0a6;
+  color: white;
+}
