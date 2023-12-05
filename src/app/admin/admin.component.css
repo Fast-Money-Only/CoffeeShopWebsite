@@ -1,3 +1,7 @@
+.admincomponent {
+  padding-left: 200px; /*Længde på sidebar*/
+}
+
 .nav {
   height: 100%;
   width: 200px;
@@ -5,7 +9,10 @@
   z-index: 1;
   top: 35px; /*Højde på navbar*/
   left: 0;
-  background-color: rgb(204,192,167);
+  background: rgb(194,167,144);
+  background: linear-gradient(90deg,
+  rgba(194,167,144,1) 0%,
+  rgba(150,135,125,1) 100%);
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -15,15 +22,16 @@ button {
   padding-right: 100%;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  background-color: TRANSPARENT;
+  color: white;
   display: block;
+  border: none;
 }
 
 button:hover {
-  background-color: #ccc0a7;
+  background-color: rgb(150,135,125);
 }
 
 button.active {
-  background-color: #8bb0a6;
-  color: white;
+  background-color: rgb(194,167,144);
 }
