@@ -1,3 +1,7 @@
+.component {
+  padding-top: 35px; /*Højde på navbar */
+}
+
 nav {
   position: fixed;
   top: 0;
