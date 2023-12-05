@@ -1,0 +1,29 @@
+.nav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 35px; /*Højde på navbar*/
+  left: 0;
+  background-color: rgb(204,192,167);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+button {
+  padding: 6px 6px 6px 32px;
+  padding-right: 100%;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+button:hover {
+  background-color: #ccc0a7;
+}
+
+button.active {
+  background-color: #8bb0a6;
+  color: white;
+}
