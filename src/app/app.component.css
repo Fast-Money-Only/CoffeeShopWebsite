@@ -2,6 +2,22 @@
   padding-top: 33px; /*Højde på navbar */
 }
 
+.toTop {
+  position: fixed;
+  font-size: 20px;
+  right: 15px;
+  bottom: 15px;
+  z-index: 1;
+  background-color: whitesmoke;
+  border: none;
+  color: white;
+  border-radius: 50%;
+}
+
+.toTop:hover {
+  background-color: lightgray;
+}
+
 nav {
   position: fixed;
   top: 0;

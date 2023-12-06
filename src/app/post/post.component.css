@@ -3,4 +3,26 @@
   grid-row-gap: 16px;
   grid-column-gap: 16px;
   grid-template-columns: auto auto auto auto;
+  margin: 10px 10px;
+}
+
+.addBtn {
+  position: fixed;
+  font-size: 25px;
+  left: 25px;
+  bottom: 25px;
+  z-index: 1;
+  background-color: rgb(204,192,167);
+  border: none;
+  color: white;
+  border-radius: 50%;
+}
+
+.addBtn:hover {
+  background-color: rgb(139,176,166);
+}
+#addPost {
+  z-index: 1;
+  /*Add mere så det kommer til at ligne en dialog*/
+  /*Så magnus' login for inspiration*/
 }

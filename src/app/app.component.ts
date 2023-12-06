@@ -39,4 +39,9 @@ export class AppComponent implements OnInit{
     btnToActivate.classList.add('active');
 
   }
+
+  scrollToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
 }
