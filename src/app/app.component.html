@@ -1,24 +1,24 @@
 <nav >
   <ul>
-    <li style="float: left; padding-left: 20px"><img src="assets/logo.png" alt="Logo" height="35"></li>
-    <li><button id="btn1" (click)="navigate('comp1', 'btn1')">Knap</button></li>
-    <li><button id="btn2" (click)="navigate('comp2', 'btn2')">Login</button></li>
-    <li><button id="btn3" (click)="navigate('comp3', 'btn3')">Profile</button></li>
-    <li><button id="btn4" (click)="navigate('comp4', 'btn4')" >Admin</button></li>
-    <li><button id="btn5" (click)="navigate('comp5', 'btn5')" class="active">Feed</button></li>
+    <li style="float: left; padding-left: 20px"><img src="../assets/img/logo.png" alt="Logo" height="35"></li>
+    <li><button id="btn1" (click)="navigate('comp1', 'btn1')">Login</button></li>
+    <li><button id="btn2" (click)="navigate('comp2', 'btn2')">Profile</button></li>
+    <li><button id="btn3" (click)="navigate('comp3', 'btn3')">Admin</button></li>
+    <li><button id="btn4" (click)="navigate('comp4', 'btn4')">Feed</button></li>
+    <li><button id="btn5" (click)="navigate('comp5', 'btn5')" class="active">Home</button></li>
   </ul>
 </nav>
-<div id="comp1" class="component">
+<div id="comp1" style="display: none" class="component">
   <p>test 1</p>
 </div>
-<div id="comp2" class="component">
+<div id="comp2" style="display: none" class="component">
   <p>test 2</p>
 </div>
-<div id="comp3" class="component">
-  <p>test 3</p>
-</div>
-<app-admin id="comp4" class="component">
+<app-admin id="comp3" style="display: none" class="component">
 </app-admin>
-<div id="comp5" class="component">
-  <p>test 5</p>
+<div id="comp4" style="display: none" class="component">
+  <p>post her</p>
+</div>
+<div id="comp5" style="display: block; width: 100%; position: fixed; left: 0;" class="component">
+  <img src="assets/img/home.png" alt="cafe with welcome" style="left: 0; top: 0; width: 100%">
 </div>
