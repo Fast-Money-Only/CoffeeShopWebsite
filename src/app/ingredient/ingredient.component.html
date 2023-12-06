@@ -1,0 +1,12 @@
+<h3>Ingredients</h3>
+<div class="scrolling-div">
+  <mat-card *ngFor="let ingredient of data">
+    <mat-card-header>
+      <mat-card-title>{{ingredient.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions align="end">
+      <button mat-button>Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

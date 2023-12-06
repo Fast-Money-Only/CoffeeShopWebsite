@@ -1,0 +1,12 @@
+<h3>Cakes</h3>
+<div class="scrolling-div">
+  <mat-card *ngFor="let cake of data">
+    <mat-card-header>
+      <mat-card-title>{{cake.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions align="end">
+      <button mat-button>Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

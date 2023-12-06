@@ -1,0 +1,13 @@
+<h3>Coffees</h3>
+<div class="scrolling-div">
+  <mat-card *ngFor="let coffee of data">
+    <mat-card-header>
+      <mat-card-title>{{coffee.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions align="end">
+      <button mat-button>Recommended cakes</button>
+      <button mat-button>Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
