@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {AdminComponent} from "./admin/admin.component";
 import {PostComponent} from "./post/post.component";
+import {MatInputModule} from "@angular/material/input";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, AdminComponent, PostComponent],
+  imports: [CommonModule, RouterOutlet, AdminComponent, PostComponent, MatInputModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
