@@ -7,8 +7,6 @@ import {MatInputModule} from "@angular/material/input";
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, AdminComponent, PostComponent, MatInputModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

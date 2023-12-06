@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CoffeeComponent} from "../coffee/coffee.component";
+import {CakeComponent} from "../cake/cake.component";
+import {IngredientComponent} from "../ingredient/ingredient.component";
 
 @Component({
   selector: 'app-admin',
-  standalone: true,
-  imports: [],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit{
 
+  ngOnInit(): void {
+    this.navigate('admincomp1', 'adminbtn1');
+  }
   navigate(divId: string, btnId: string) {
     //Set alle elemented til ikke active og ikke show content
     //Derefter sæt id-et til active og show
@@ -30,4 +34,5 @@ export class AdminComponent {
     // @ts-ignore
     btnToActivate.classList.add('active');
   }
+
 }
