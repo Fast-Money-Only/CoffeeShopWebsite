@@ -9,15 +9,46 @@
   </ul>
 </nav>
 <div id="comp1" style="display: none" class="component">
-  <p>test 1</p>
+  <div id="container">
+
+    <img src="assets/bg.png" style="height: 700px; width: 1500px">
+
+    <div id="example">
+      <label style="font-family: 'Forte'; font-size: 38px; text-align: center"> Log in</label>
+      <br>
+      <div id="loginDiv">
+
+        <mat-form-field style="font-size: 20px; font-family: 'Arial'; margin-bottom: 2rem">
+          <input matInput placeholder="Email">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field style="font-size: 20px; font-family: 'Arial'; margin-bottom: 2rem">
+          <input matInput placeholder="Password">
+        </mat-form-field>
+
+        <br>
+        <br>
+
+        <button mat-button style="background-color: rgb(244,134,111); opacity: 90%">Log in</button>
+
+
+      </div>
+    </div>
+
+  </div>
+
 </div>
 <div id="comp2" style="display: none" class="component">
-  <p>test 2</p>
+
+
 </div>
 <app-admin id="comp3" style="display: none" class="component">
 </app-admin>
 <div id="comp4" style="display: none" class="component">
   <p>post her</p>
+  <app-post></app-post>
 </div>
 <div id="comp5" style="display: block; width: 100%; position: fixed; left: 0;" class="component">
   <img src="assets/img/home.png" alt="cafe with welcome" style="left: 0; top: 0; width: 100%">
