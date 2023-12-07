@@ -1,0 +1,23 @@
+<div id="container">
+
+  <img src="assets/bg.png" style="left: 0; top: 0; width: 100%">
+
+  <div id="example">
+    <label style="font-family: 'Forte'; font-size: 38px; text-align: center"> Log in</label>
+    <br>
+    <div id="loginDiv">
+      <form #loginUserForm="ngForm" (ngSubmit)="loginUser(loginUserForm)">
+        <mat-form-field style="font-size: 20px; font-family: 'Arial'; margin-bottom: 2rem">
+          <input id="email" matInput placeholder="Email">
+        </mat-form-field>
+        <br>
+        <mat-form-field style="font-size: 20px; font-family: 'Arial'; margin-bottom: 2rem">
+          <input id="password" matInput placeholder="Password">
+        </mat-form-field>
+        <br>
+        <br>
+        <button type="submit" mat-button style="background-color: rgb(244,134,111); opacity: 90%">Log in</button>
+      </form>
+    </div>
+  </div>
+</div>

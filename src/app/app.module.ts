@@ -15,6 +15,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {AppRoutingModule} from "./app.routes";
 import {AdminComponent} from "./admin/admin.component";
+import {UserComponent} from "./user/user.component";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {AdminComponent} from "./admin/admin.component";
     CakeComponent,
     PostComponent,
     IngredientComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
