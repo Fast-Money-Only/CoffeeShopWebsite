@@ -23,9 +23,21 @@ export class PostComponent implements OnInit{
   }
 
   showAddPost() {
-    var div = document.getElementById('addPost');
+    const div = document.getElementById('addPost');
+    const btn = document.getElementById('addBtn');
     // @ts-ignore
-    div.style.display = 'block';
+    if (div.style.display != 'block') {
+      // @ts-ignore
+      div.style.display = 'block';
+      // @ts-ignore
+      btn.textContent = 'X';
+    } else {
+      // @ts-ignore
+      div.style.display = 'none';
+      // @ts-ignore
+      btn.textContent = '+';
+    }
+
   }
 
   onSubmit(postForm: any) {
@@ -39,4 +51,5 @@ export class PostComponent implements OnInit{
         .subscribe((response) =>
         {console.log(response), this.ngOnInit()});*/
   }
+
 }

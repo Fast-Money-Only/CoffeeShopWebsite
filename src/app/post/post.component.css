@@ -6,7 +6,7 @@
   margin: 10px 10px;
 }
 
-.addBtn {
+#addBtn {
   position: fixed;
   font-size: 25px;
   left: 25px;
@@ -18,7 +18,7 @@
   border-radius: 50%;
 }
 
-.addBtn:hover {
+#addBtn:hover {
   background-color: rgb(139,176,166);
 }
 #addPost {

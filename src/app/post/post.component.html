@@ -11,18 +11,24 @@
   </mat-card>
 </div>
 
-<button class="addBtn" (click)="showAddPost()">&#x2B;</button>
+<button id="addBtn" (click)="showAddPost()">&#x2B;</button>
 
-<div id="addPost" style="display: none">
-  <form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
-    <mat-form-field>
-      <mat-label>Caption</mat-label>
-      <input matInput placeholder="Enter a caption" name="name" ngModel>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Filename</mat-label>
-      <input matInput placeholder="Name of image" name="img" ngModel>
-    </mat-form-field>
-    <button mat-button type="submit">Post</button>
-  </form>
+<div id="addPost" style="display: none; width: 250px">
+  <mat-card>
+
+    <mat-card-content>
+      <form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
+        <mat-form-field>
+          <mat-label>Caption</mat-label>
+          <input matInput placeholder="Enter a caption" name="name" ngModel>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Filename</mat-label>
+          <input matInput placeholder="Name of image" name="img" ngModel>
+        </mat-form-field>
+        <button mat-button type="submit">Post</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
 </div>
