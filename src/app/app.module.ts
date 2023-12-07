@@ -16,6 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import {AppRoutingModule} from "./app.routes";
 import {AdminComponent} from "./admin/admin.component";
 import {UserComponent} from "./user/user.component";
+import {OrderComponent} from "./order/order.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {UserComponent} from "./user/user.component";
     PostComponent,
     IngredientComponent,
     UserComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,

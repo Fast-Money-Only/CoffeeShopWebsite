@@ -43,13 +43,13 @@ export class PostComponent implements OnInit{
   onSubmit(postForm: any) {
     let post :PostModel = new PostModel();
     post.title = postForm.value.name;
-    post.img = postForm.value.img; //Skal rettes
-    post.userID = "4d07ca7e-aa29-456f-8808-27ea0dcfe096";//hard coded to check login
+    post.img = postForm.value.img;
+    post.userID = "5a217f9c-95f9-422a-aa32-fe970a70f946";//hard coded to check login
     console.log(post);
-    /*
+
     this.service.addPost(post)
         .subscribe((response) =>
-        {console.log(response), this.ngOnInit()});*/
+        {console.log(response); this.ngOnInit()});
   }
 
 }

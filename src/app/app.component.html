@@ -4,6 +4,7 @@
     <li><button id="btn1" (click)="navigate('comp1', 'btn1')">Login</button></li>
     <li><button id="btn2" (click)="navigate('comp2', 'btn2')">Profile</button></li>
     <li><button id="btn3" (click)="navigate('comp3', 'btn3')">Admin</button></li>
+    <li><button id="btn6" (click)="navigate('comp6', 'btn6')">Order</button></li>
     <li><button id="btn4" (click)="navigate('comp4', 'btn4')">Feed</button></li>
     <li><button id="btn5" (click)="navigate('comp5', 'btn5')" class="active">Home</button></li>
   </ul>
@@ -16,6 +17,9 @@
 </div>
 <app-admin id="comp3" style="display: none" class="component">
 </app-admin>
+<div id="comp6" style="display: none" class="component">
+  <p>test 6</p>
+</div>
 <app-post id="comp4" style="display: none" class="component">
   <p>post her</p>
 </app-post>

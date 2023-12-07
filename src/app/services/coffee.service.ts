@@ -20,6 +20,10 @@ export class CoffeeService {
     return this.http.get(this.baseUrl + "/GetCoffees")
   }
 
+  getRecommendedCake(id: string) : Observable<Object>{
+    return this.http.get(this.baseUrl + "/CoffeeCake/" + id);
+  }
+
   getAllCoffeeIngredients() : Observable<Object>{
     return this.http.get(this.baseUrl + "/CoffeeIngredients")
   }
