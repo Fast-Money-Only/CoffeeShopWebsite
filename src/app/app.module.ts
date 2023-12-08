@@ -31,7 +31,7 @@ import {StorageModule} from "@ngx-pwa/local-storage";
     PostComponent,
     IngredientComponent,
     UserComponent,
-      TestCComponent
+      TestCComponent,
     OrderComponent,
   ],
   imports: [
