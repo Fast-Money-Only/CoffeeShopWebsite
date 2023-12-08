@@ -1,0 +1,21 @@
+
+<div class="gridDisplay">
+  <div id="pending" >
+    <h3>Pending</h3>
+    <mat-card *ngFor="let order of pendingData">
+      <mat-card-header>
+        <mat-card-title>Ordre id:</mat-card-title>
+        <mat-card-subtitle>{{order.id}}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+  <div id="done" >
+    <h3>Done</h3>
+    <mat-card *ngFor="let order of doneData">
+      <mat-card-header>
+        <mat-card-title>Ordre id:</mat-card-title>
+        <mat-card-subtitle>{{order.id}}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+</div>
