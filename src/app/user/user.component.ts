@@ -2,11 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {NgForm} from "@angular/forms";
 import {UserModel} from "./User.Model";
+import { StorageMap } from '@ngx-pwa/local-storage';
 
 //import {IngredientModel} from "../ingredients/Ingredient.Model";
 //import {valueOf} from "jasmine";
 
 import {MembershipModel} from "../membership/Membership.Model";
+import {StorageService} from "../storage.service";
+
 
 
 @Component({
@@ -20,7 +23,8 @@ export class UserComponent implements OnInit{
   userOrdersData: any;
   currentUser: any;
 
-  constructor(private service: UserService) {
+
+  constructor(private service: UserService, private storage: StorageService) {
   }
 
   ngOnInit(): void {
@@ -46,8 +50,8 @@ export class UserComponent implements OnInit{
     // @ts-ignore
     let Password = document.getElementById("password").value;
 
-    this.service.loginUser(Email, Password).subscribe(currentUser => {this.currentUser = currentUser; console.log('WORKS')}, (error) =>{console.error('Error here:', error);})
-    //this.service.loginUser(em,pass).subscribe((response) => {console.log(response)})
+    this.service.loginUser(Email, Password).subscribe(currentUser => {this.currentUser = currentUser; console.log('WORKS');this.storage.set('user', this.currentUser).subscribe(() => {console.log('User data saved in storage');})}, (error) =>{console.error('Error here:', error);})
+    //this.storage.set('user', this.currentUser).subscribe(() => {console.log('User data saved in storage');});
   }
 
 

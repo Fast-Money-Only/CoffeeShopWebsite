@@ -16,6 +16,10 @@ import {MatInputModule} from "@angular/material/input";
 import {AppRoutingModule} from "./app.routes";
 import {AdminComponent} from "./admin/admin.component";
 import {UserComponent} from "./user/user.component";
+import {TestCComponent} from "./test-c/test-c.component";
+import {StorageModule} from "@ngx-pwa/local-storage";
+//import {StorageMap} from "@ngx-pwa/local-storage";
+
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import {UserComponent} from "./user/user.component";
     PostComponent,
     IngredientComponent,
     UserComponent,
+      TestCComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,8 @@ import {UserComponent} from "./user/user.component";
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StorageModule.forRoot({ IDBNoWrap: true }),
   ],
   providers: [],
   bootstrap: [AppComponent]
