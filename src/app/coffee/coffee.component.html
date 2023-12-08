@@ -1,12 +1,20 @@
 <h3>Coffees</h3>
 <div class="scrolling-div">
-  <mat-card *ngFor="let coffee of data">
-    <mat-card-header>
-      <mat-card-title>{{coffee.name}}</mat-card-title>
-    </mat-card-header>
+  <mat-card id="{{coffee.id}}card" *ngFor="let coffee of data">
+    <div id="{{coffee.id}}coffees">
+      <mat-card-header>
+        <mat-card-title>{{coffee.name}}</mat-card-title>
+      </mat-card-header>
+    </div>
+    <div id="{{coffee.id}}cakes" style="display: none">
+      <mat-card-header>
+        <mat-card-title>Recommended cakes</mat-card-title>
+        <mat-card-subtitle *ngFor="let cake of recommendedCake">{{cake.name}}</mat-card-subtitle>
+      </mat-card-header>
+    </div>
     <mat-card-actions align="end">
-      <button mat-button>Recommended cakes</button>
-      <button mat-button>Delete</button>
+      <button id="{{coffee.id}}flip" mat-stroked-button (click)="flipCard(coffee)" >Recommended cakes</button>
+      <button id="{{coffee.id}}delete" mat-stroked-button (click)="onDelete(coffee.id)">Delete</button>
     </mat-card-actions>
   </mat-card>
 </div>

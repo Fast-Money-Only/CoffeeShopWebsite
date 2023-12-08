@@ -16,6 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import {AppRoutingModule} from "./app.routes";
 import {AdminComponent} from "./admin/admin.component";
 import {UserComponent} from "./user/user.component";
+import {OrderComponent} from "./order/order.component";
 import {TestCComponent} from "./test-c/test-c.component";
 import {StorageModule} from "@ngx-pwa/local-storage";
 //import {StorageMap} from "@ngx-pwa/local-storage";
@@ -31,6 +32,7 @@ import {StorageModule} from "@ngx-pwa/local-storage";
     IngredientComponent,
     UserComponent,
       TestCComponent
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
