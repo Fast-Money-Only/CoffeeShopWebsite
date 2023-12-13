@@ -4,6 +4,11 @@ import { RouterOutlet } from '@angular/router';
 import {AdminComponent} from "./admin/admin.component";
 import {PostComponent} from "./post/post.component";
 import {MatInputModule} from "@angular/material/input";
+import {RouterLink} from "@angular/router";
+import {RouterLinkActive} from "@angular/router";
+import {StorageService} from "./storage.service";
+import { Subscription } from "rxjs";
+import {UserModel} from "./user/User.Model";
 
 @Component({
   selector: 'app-root',
@@ -12,6 +17,12 @@ import {MatInputModule} from "@angular/material/input";
 })
 export class AppComponent implements OnInit{
   title = 'CoffeeShopWeb';
+  currentUser: UserModel = new UserModel();
+  subscription: Subscription = new Subscription();
+
+  constructor(private storage: StorageService) {
+  }
+
 
   ngOnInit() {
     this.navigate('comp5', 'btn5');
@@ -39,6 +50,18 @@ export class AppComponent implements OnInit{
     btnToActivate.classList.add('active');
 
   }
+
+  setUser() {
+    this.subscription = this.storage.get('user').subscribe((user: UserModel) => {
+      if (user) {
+        this.currentUser = user;
+        console.log('Retrieved User:', this.currentUser);
+      } else {
+        console.log('User not found in storage');
+      }
+    });
+  }
+
 
   scrollToTop() {
     document.body.scrollTop = 0;

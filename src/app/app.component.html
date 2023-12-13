@@ -1,11 +1,11 @@
 <nav >
   <ul>
     <li style="float: left; padding-left: 20px"><img src="../assets/img/logo.png" alt="Logo" height="35"></li>
-    <li><button id="btn1" (click)="navigate('comp1', 'btn1')">Login</button></li>
-    <li><button id="btn7" (click)="navigate('comp7', 'btn7')">Logout</button></li>
-    <li><button id="btn2" (click)="navigate('comp2', 'btn2')">Profile</button></li>
-    <li><button id="btn3" (click)="navigate('comp3', 'btn3')">Admin</button></li>
-    <li><button id="btn6" (click)="navigate('comp6', 'btn6')">Order</button></li>
+    <li><button *ngIf="currentUser == null" id="btn1" (click)="navigate('comp1', 'btn1')">Login</button></li>
+    <li><button *ngIf="currentUser != null"id="btn7" (click)="navigate('comp7', 'btn7')">Logout</button></li>
+    <li><button *ngIf="currentUser != null"id="btn2" (click)="navigate('comp2', 'btn2')">Profile</button></li>
+    <li><button *ngIf="currentUser.membershipId == '55774005-b6bc-4b6d-8dd6-9cd903a81432' "id="btn3" (click)="navigate('comp3', 'btn3')">Admin</button></li>
+    <li><button *ngIf="currentUser != null"id="btn6" (click)="navigate('comp6', 'btn6')">Order</button></li>
     <li><button id="btn4" (click)="navigate('comp4', 'btn4')">Feed</button></li>
     <li><button id="btn5" (click)="navigate('comp5', 'btn5')" class="active">Home</button></li>
   </ul>
@@ -29,3 +29,4 @@
 </div>
 
 <button class="toTop" (click)="scrollToTop()" >&#8593;</button>
+

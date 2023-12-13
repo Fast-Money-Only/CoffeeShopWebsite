@@ -12,7 +12,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
-import {AppRoutingModule} from "./app.routes";
+import {AppRoutingModule} from "./app.routing.module";
 import {AdminComponent} from "./admin/admin.component";
 import {UserComponent} from "./user/user.component";
 import {OrderComponent} from "./order/order.component";
@@ -46,6 +46,7 @@ import {StorageModule} from "@ngx-pwa/local-storage";
     MatInputModule,
     ReactiveFormsModule,
     StorageModule.forRoot({ IDBNoWrap: true }),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
