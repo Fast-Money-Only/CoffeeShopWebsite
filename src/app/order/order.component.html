@@ -5,15 +5,17 @@
     <div class="rowGap">
       <mat-card *ngFor="let order of pendingData">
         <mat-card-header>
-          <mat-card-title>Ordre:</mat-card-title>
-          <mat-card-subtitle>Created at: {{order.created}}</mat-card-subtitle>
+          <mat-card-title>Order:</mat-card-title>
+          <mat-card-subtitle>Pickup at: <span style="font-weight: bold">{{order.pickup.substring(0,16)}}</span></mat-card-subtitle>
+          <mat-card-subtitle>Created at: <span style="font-weight: bold">{{order.created.substring(0,16)}}</span></mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="content" id="{{order.id}}content" style="display: none">
+          <br>
           <mat-card-subtitle *ngFor="let product of products">{{product.quantity}}x {{product.name}}</mat-card-subtitle>
         </mat-card-content>
-        <mat-card-actions align="end">
-          <button mat-button (click)="showProducts(order.id)" >View</button>
-          <button mat-button (click)="moveToDone(order)">Ready For Pickup</button>
+        <mat-card-actions align="end" class="columnGap">
+          <button mat-button style="background-color: rgba(204,192,167,70%); color: white" (click)="showProducts(order.id)" >View order</button>
+          <button mat-button style="background-color: rgb(204,192,167); color: white" (click)="moveToDone(order)">Ready For Pickup</button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -24,14 +26,15 @@
     <div class="rowGap" >
       <mat-card *ngFor="let order of doneData">
         <mat-card-header>
-          <mat-card-title>Ordre:</mat-card-title>
-          <mat-card-subtitle>Created at: {{order.created}}</mat-card-subtitle>
+          <mat-card-title>Order:</mat-card-title>
+          <mat-card-subtitle>Pickup at: <span style="font-weight: bold">{{order.pickup.substring(0,16)}}</span></mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="content" id="{{order.id}}content" style="display: none">
+          <br>
           <mat-card-subtitle *ngFor="let product of products">{{product.quantity}}x {{product.name}}</mat-card-subtitle>
         </mat-card-content>
         <mat-card-actions align="end">
-          <button mat-button (click)="showProducts(order.id)" >View</button>
+          <button mat-button style="background-color: rgba(204,192,167,70%); color: white" (click)="showProducts(order.id)" >View</button>
         </mat-card-actions>
       </mat-card>
     </div>
