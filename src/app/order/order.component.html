@@ -2,20 +2,38 @@
 <div class="gridDisplay">
   <div id="pending" >
     <h3>Pending</h3>
-    <mat-card *ngFor="let order of pendingData">
-      <mat-card-header>
-        <mat-card-title>Ordre id:</mat-card-title>
-        <mat-card-subtitle>{{order.id}}</mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
+    <div class="rowGap">
+      <mat-card *ngFor="let order of pendingData">
+        <mat-card-header>
+          <mat-card-title>Ordre:</mat-card-title>
+          <mat-card-subtitle>Created at: {{order.created}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="content" id="{{order.id}}content" style="display: none">
+          <mat-card-subtitle *ngFor="let product of products">{{product.quantity}}x {{product.name}}</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button (click)="showProducts(order.id)" >View</button>
+          <button mat-button (click)="moveToDone(order)">Ready For Pickup</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
   </div>
-  <div id="done" >
+  <div id="done"  >
     <h3>Done</h3>
-    <mat-card *ngFor="let order of doneData">
-      <mat-card-header>
-        <mat-card-title>Ordre id:</mat-card-title>
-        <mat-card-subtitle>{{order.id}}</mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
+    <div class="rowGap" >
+      <mat-card *ngFor="let order of doneData">
+        <mat-card-header>
+          <mat-card-title>Ordre:</mat-card-title>
+          <mat-card-subtitle>Created at: {{order.created}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="content" id="{{order.id}}content" style="display: none">
+          <mat-card-subtitle *ngFor="let product of products">{{product.quantity}}x {{product.name}}</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button (click)="showProducts(order.id)" >View</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 </div>

@@ -15,6 +15,10 @@ export class PostService {
     return this.http.get(this.baseUrl + "/GetPosts");
   }
 
+  getUserFromPost(id: string) : Observable<Object>{
+    return this.http.get(this.baseUrl + "/GetUser/" + id)
+  }
+
   getPost(id: string): Observable<Object>{
     return this.http.get(this.baseUrl + id);
   }

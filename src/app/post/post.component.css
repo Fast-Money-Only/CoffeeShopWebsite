@@ -3,7 +3,19 @@
   grid-row-gap: 16px;
   grid-column-gap: 16px;
   grid-template-columns: auto auto auto auto;
-  margin: 10px 10px;
+  margin-top: 20px;
+}
+
+.polariod {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.spaceAround {
+  width: 90%;
+  margin: auto;
 }
 
 #addBtn {

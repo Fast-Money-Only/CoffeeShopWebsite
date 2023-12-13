@@ -1,5 +1,5 @@
 .scrolling-div {
-  height: 100vh; /* % af skærmstørrelse */
+  height: 100vh; /* % af skærm height */
   overflow: auto;
 }
 

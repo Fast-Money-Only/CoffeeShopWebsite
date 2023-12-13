@@ -10,7 +10,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from "@angular/material/card";
-import {MatCardActions} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {AppRoutingModule} from "./app.routes";
@@ -22,6 +21,8 @@ import {StorageModule} from "@ngx-pwa/local-storage";
 //import {StorageMap} from "@ngx-pwa/local-storage";
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,7 @@ import {StorageModule} from "@ngx-pwa/local-storage";
     PostComponent,
     IngredientComponent,
     UserComponent,
-      TestCComponent,
+    TestCComponent,
     OrderComponent,
   ],
   imports: [

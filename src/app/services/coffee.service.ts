@@ -32,4 +32,8 @@ export class CoffeeService {
     return this.http.get(this.baseUrl + "/" + id)
   }
 
+  getCoffeePlaces() : Observable<Object>{
+    return this.http.get("http://localhost:5056/api/CoffeePlace/GetCoffeePlaces");
+  }
+
 }

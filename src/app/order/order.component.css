@@ -4,3 +4,9 @@
   grid-column-gap: 16px;
   grid-template-columns: auto auto;
 }
+
+.rowGap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

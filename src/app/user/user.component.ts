@@ -9,6 +9,7 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 
 import {MembershipModel} from "../membership/Membership.Model";
 import {StorageService} from "../storage.service";
+import {AppComponent} from "../app.component";
 
 
 

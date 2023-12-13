@@ -24,7 +24,10 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "scripts": []
+            "scripts": [],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css"
+            ]
           },
           "configurations": {
             "production": {

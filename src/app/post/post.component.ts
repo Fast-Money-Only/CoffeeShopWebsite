@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from "../services/post.service";
 import {MatButtonModule} from "@angular/material/button";
-import {MatCardModule} from "@angular/material/card";
 import {PostModel} from "./post.Model";
+import {UserModel} from "../user/User.Model";
+import {StorageService} from "../storage.service";
+import {Subscription} from "rxjs";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-post',
@@ -12,15 +15,32 @@ import {PostModel} from "./post.Model";
 export class PostComponent implements OnInit{
   data: any;
   user:  any;
+  userFromPost: any;
+  currentUser: UserModel = new UserModel();
+  subscription: Subscription = new Subscription();
 
 
-  constructor(private service: PostService) {
+  constructor(private service: PostService,
+              private storage: StorageService) {
   }
 
   ngOnInit(): void {
     this.service.getPosts().subscribe(data => this.data = data);
     console.log(this.data);
+    this.setUser();
   }
+
+  setUser() {
+    this.subscription = this.storage.get('user').subscribe((user: UserModel) => {
+      if (user) {
+        this.currentUser = user;
+        console.log('Retrieved User:', this.currentUser);
+      } else {
+        console.log('User not found in storage');
+      }
+    });
+  }
+
 
   showAddPost() {
     const div = document.getElementById('addPost');
@@ -37,14 +57,13 @@ export class PostComponent implements OnInit{
       // @ts-ignore
       btn.textContent = '+';
     }
-
   }
 
   onSubmit(postForm: any) {
     let post :PostModel = new PostModel();
     post.title = postForm.value.name;
     post.img = postForm.value.img;
-    post.userID = "5a217f9c-95f9-422a-aa32-fe970a70f946";//hard coded to check login
+    post.userID = this.currentUser.id;
     console.log(post);
 
     this.service.addPost(post)
