@@ -64,7 +64,6 @@ export class UserComponent implements OnInit{
 
   logout(): void{
     this.storage.delete('user').subscribe(() => {console.log('Removed')});
-    this.router.navigate(['/login']);
   }
 
 

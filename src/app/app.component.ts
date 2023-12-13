@@ -26,6 +26,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     this.navigate('comp5', 'btn5');
+    this.setUser();
   }
 
   navigate(divId: string, btnId: string) {
@@ -60,6 +61,10 @@ export class AppComponent implements OnInit{
         console.log('User not found in storage');
       }
     });
+  }
+
+  logout(): void{
+    this.storage.delete('user').subscribe(() => {console.log('Removed');document.location.reload()});
   }
 
 
