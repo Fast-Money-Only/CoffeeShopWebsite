@@ -3,6 +3,9 @@ import {UserService} from "../services/user.service";
 import {NgForm} from "@angular/forms";
 import {UserModel} from "./User.Model";
 import { StorageMap } from '@ngx-pwa/local-storage';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import {NavigationExtras} from "@angular/router";
 
 //import {IngredientModel} from "../ingredients/Ingredient.Model";
 //import {valueOf} from "jasmine";
@@ -10,6 +13,7 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 import {MembershipModel} from "../membership/Membership.Model";
 import {StorageService} from "../storage.service";
 import {AppComponent} from "../app.component";
+import {empty} from "rxjs";
 
 
 
@@ -25,7 +29,7 @@ export class UserComponent implements OnInit{
   currentUser: any;
 
 
-  constructor(private service: UserService, private storage: StorageService) {
+  constructor(private service: UserService, private storage: StorageService,private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -51,9 +55,20 @@ export class UserComponent implements OnInit{
     // @ts-ignore
     let Password = document.getElementById("password").value;
 
-    this.service.loginUser(Email, Password).subscribe(currentUser => {this.currentUser = currentUser; console.log('WORKS');this.storage.set('user', this.currentUser).subscribe(() => {console.log('User data saved in storage');})}, (error) =>{console.error('Error here:', error);})
+      this.service.loginUser(Email, Password).subscribe(currentUser => {this.currentUser = currentUser; console.log('WORKS');this.storage.set('user', this.currentUser).subscribe(() => {console.log('User data saved in storage');
+      this.router.navigate(['../test-c']); document.location.reload()})},
+          (error) =>{console.error('Error here:', error);
+      })
     //this.storage.set('user', this.currentUser).subscribe(() => {console.log('User data saved in storage');});
   }
+
+  logout(): void{
+    this.storage.delete('user').subscribe(() => {console.log('Removed')});
+    this.router.navigate(['/login']);
+  }
+
+
+
 
 
   // protected readonly valueOf = valueOf;
@@ -73,4 +88,6 @@ export class UserComponent implements OnInit{
     this.service.createUser(user).subscribe((response) =>
     {console.log(response), this.ngOnInit()});
   }
+
+  protected readonly empty = empty;
 }

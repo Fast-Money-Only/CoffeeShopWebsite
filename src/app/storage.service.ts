@@ -20,4 +20,8 @@ export class StorageService {
   }
 
 
+  delete(key: string): Observable<undefined> {
+    return this.storage.delete(key);
+  }
+
 }
