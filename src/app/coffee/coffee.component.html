@@ -1,22 +1,24 @@
 <h3>Coffees</h3>
 <div class="scrolling-div">
-  <mat-card id="{{coffee.id}}card" *ngFor="let coffee of data">
-    <div id="{{coffee.id}}coffees">
-      <mat-card-header>
-        <mat-card-title>{{coffee.name}}</mat-card-title>
-      </mat-card-header>
-    </div>
-    <div id="{{coffee.id}}cakes" style="display: none">
-      <mat-card-header>
-        <mat-card-title>Recommended cakes</mat-card-title>
-        <mat-card-subtitle *ngFor="let cake of recommendedCake">{{cake.name}}</mat-card-subtitle>
-      </mat-card-header>
-    </div>
-    <mat-card-actions align="end">
-      <button id="{{coffee.id}}flip" mat-stroked-button (click)="flipCard(coffee)" >Recommended cakes</button>
-      <button id="{{coffee.id}}delete" mat-stroked-button (click)="onDelete(coffee.id)">Delete</button>
-    </mat-card-actions>
-  </mat-card>
+  <div class="rowGap">
+    <mat-card id="{{coffee.id}}card" *ngFor="let coffee of data" style="background-color: rgba(204,192,167,20%)">
+      <div id="{{coffee.id}}coffees">
+        <mat-card-header>
+          <mat-card-title>{{coffee.name}}</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div id="{{coffee.id}}cakes" style="display: none">
+        <mat-card-header>
+          <mat-card-title>Recommended cakes</mat-card-title>
+          <mat-card-subtitle *ngFor="let cake of recommendedCake">{{cake.name}}</mat-card-subtitle>
+        </mat-card-header>
+      </div>
+      <mat-card-actions align="end" class="columnGap">
+        <button id="{{coffee.id}}delete" mat-button (click)="onDelete(coffee.id)">Delete</button>
+        <button id="{{coffee.id}}flip" mat-button style="background-color: rgba(204,192,167,70%); color: white" (click)="flipCard(coffee)" >Recommended cakes</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
 <!-- Lav en div mere for user login, display den div der skal frem i forhold til hvor man er på websiden -->
 
