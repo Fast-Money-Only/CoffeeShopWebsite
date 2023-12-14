@@ -6,6 +6,7 @@ import {UserModel} from "../user/User.Model";
 import {StorageService} from "../storage.service";
 import {Subscription} from "rxjs";
 import {UserService} from "../services/user.service";
+import {MatInputModule} from "@angular/material/input";
 
 @Component({
   selector: 'app-post',
