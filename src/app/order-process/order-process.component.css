@@ -1,0 +1,35 @@
+.center {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    position: absolute;
+}
+
+h2 {
+    color: #3c302f;
+}
+
+h3 {
+    color: #3c302f;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.scrollingDiv {
+    top: 0;
+    height: 70vh; /* % af skærm height */
+    overflow: auto;
+    overflow-x: hidden;
+
+}
+
+.rowGap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

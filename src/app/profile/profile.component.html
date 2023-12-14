@@ -1,0 +1,59 @@
+<div class="gridDisplay">
+    <div style="padding: 20px">
+
+        <h2>Good day {{currentUser.firstname}} !</h2>
+        <form class="example-form" #userForm="ngForm" (ngSubmit)="updateUser(userForm)">
+
+            <hr class="solid">
+            <br>
+
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>{{currentUser.firstname}}</mat-label>
+                    <input matInput name="firstname" placeholder="Firstname" ngModel>
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>{{currentUser.lastname}}</mat-label>
+                    <input matInput name="lastname" placeholder="Lastname" ngModel>
+                </mat-form-field></td>
+            </tr></table>
+
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>{{currentUser.email}}</mat-label>
+                    <input matInput name="mail" placeholder="E-mail" ngModel>
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>{{currentUser.phone}}</mat-label>
+                    <input matInput name="phonenr" placeholder="Phonenumber" ngModel>
+                </mat-form-field></td>
+            </tr></table>
+
+            <button type="submit" mat-button style="background-color: rgb(139,176,166); color: white" >Update profile</button>
+            <br>
+        </form>
+
+        <form class="example-form" #passwordForm="ngForm" (ngSubmit)="updatePassword(passwordForm)">
+            <br>
+            <hr class="solid">
+            <br>
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>New password</mat-label>
+                    <input matInput type="password" name="password" ngModel>
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width">
+                    <mat-label>Repeat password</mat-label>
+                    <input id="repeated" matInput type="password" name="repeatedPassword" ngModel>
+                </mat-form-field></td>
+            </tr></table>
+
+            <button type="submit" mat-button style="background-color: rgba(139,176,166,70%); color: white" >Change password</button>
+
+        </form>
+    </div>
+
+    <div>
+        <p>kvitteriner her</p>
+    </div>
+</div>
