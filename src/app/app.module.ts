@@ -18,6 +18,7 @@ import {UserComponent} from "./user/user.component";
 import {OrderComponent} from "./order/order.component";
 import {TestCComponent} from "./test-c/test-c.component";
 import {StorageModule} from "@ngx-pwa/local-storage";
+import {HomeComponent} from "./home/home.component";
 //import {StorageMap} from "@ngx-pwa/local-storage";
 
 
@@ -45,7 +46,8 @@ import {StorageModule} from "@ngx-pwa/local-storage";
     MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
-    StorageModule.forRoot({ IDBNoWrap: true }),
+    StorageModule.forRoot({IDBNoWrap: true}),
+    HomeComponent,
 
   ],
   providers: [],

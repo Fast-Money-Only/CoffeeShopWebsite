@@ -1,0 +1,26 @@
+.gridDisplay {
+  justify-items: center;
+  display: grid;
+  grid-row-gap: 25px;
+  grid-column-gap: 16px;
+  grid-template-columns: auto auto auto;
+  margin-top: 60px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.coffeeInformation {
+  font-family: 'Baskerville Old Face';
+  font-size: 24px;
+  text-align: center;
+}
+
+.coffeeText{
+  text-align: center;
+  font-family: "Baskerville Old Face";
+  font-size: 18px;
+}
+
+
