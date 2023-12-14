@@ -33,3 +33,8 @@ h3 {
     flex-direction: column;
     gap: 10px;
 }
+
+.gridDisplay {
+    display: grid;
+    grid-template-columns: auto auto;
+}
