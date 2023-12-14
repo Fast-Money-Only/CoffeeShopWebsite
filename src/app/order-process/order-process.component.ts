@@ -9,6 +9,9 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {CakeService} from "../services/cake.service";
 import {CakeModel} from "../cake/cake.Model";
+import {ProductModel} from "./product.Model";
+import {MatIconModule} from "@angular/material/icon";
+import {OrderModel} from "../order/order.Model";
 
 @Component({
   selector: 'app-order-process',
@@ -16,7 +19,8 @@ import {CakeModel} from "../cake/cake.Model";
   imports: [
     NgForOf,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   templateUrl: './order-process.component.html',
   styleUrl: './order-process.component.css'
@@ -25,9 +29,11 @@ export class OrderProcessComponent implements OnInit{
   coffeeData: any;
   cakeData: any;
   recommendedCake: any;
-  coffeePlace: any;
+  selectedCoffeePlace: any;
   coffeePlaces: any;
+  total: number = 0;
   currentSelectedCoffee: any;
+  productsToAdd: ProductModel[] = [];
   currentUser: UserModel = new UserModel();
   subscription: Subscription = new Subscription();
 
@@ -67,7 +73,7 @@ export class OrderProcessComponent implements OnInit{
 
 
   choosePlace(place: any) {
-    this.coffeePlace = place;
+    this.selectedCoffeePlace = place;
     let placeDiv = document.getElementById('placeDiv');
     // @ts-ignore
     placeDiv.style.display = 'none';
@@ -103,10 +109,45 @@ export class OrderProcessComponent implements OnInit{
   }
 
   addCoffeeToOrder(coffee: CoffeeModel) {
+    let product: ProductModel = new ProductModel();
+    product.ProductName = coffee.name;
+    product.ProductNumber = coffee.id;
+    product.ProductPrice = coffee.price;
+    this.productsToAdd.push(product);
+    this.total = this.total + coffee.price;
 
+    setTimeout(function () {
+      let productDiv = document.getElementById("productDiv")
+      // @ts-ignore
+      productDiv.scrollTop = productDiv.scrollHeight;
+    }, 100);
   }
 
   addCakeToOrder(cake: CakeModel) {
+    let product: ProductModel = new ProductModel();
+    product.ProductName = cake.name;
+    product.ProductNumber = cake.id;
+    product.ProductPrice = cake.price;
+    this.productsToAdd.push(product);
+    this.total = this.total + cake.price;
+
+    setTimeout(function () {
+      let productDiv = document.getElementById("productDiv")
+      // @ts-ignore
+      productDiv.scrollTop = productDiv.scrollHeight;
+    }, 100);
+
+  }
+
+  removeProduct(Id: string) {
+    this.productsToAdd = this.productsToAdd.filter(item => item.ProductId !== Id);
+  }
+
+
+  createOrder() {
+    let ordre = new OrderModel();
+    ordre.userId = this.currentUser.id;
+    ordre.coffeePlaceId = this.selectedCoffeePlace.id;
 
   }
 }
