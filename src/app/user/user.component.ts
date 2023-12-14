@@ -36,6 +36,18 @@ export class UserComponent implements OnInit{
     this.service.getUsers().subscribe(data => this.data = data);
   }
 
+
+  showCreateUser(): void {
+    let contentToHide = document.getElementById("example");
+    // @ts-ignore
+    contentToHide.style.display = 'none';
+
+
+    let contentToShow = document.getElementById("createUserDiv");
+    // @ts-ignore
+    contentToShow.style.display = "block";
+  }
+
   getUser(id: string): void {
     this.service.getUser(id).subscribe(userData => this.userData = userData);
   }

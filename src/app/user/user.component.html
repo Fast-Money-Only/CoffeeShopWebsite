@@ -19,5 +19,38 @@
         <button type="submit" mat-button style="background-color: rgb(244,134,111); opacity: 90%">Log in</button>
       </form>
     </div>
+    <br>
+    <button (click)="showCreateUser()" mat-flat-button style="padding-top: 10px; ">Create user here</button>
+  </div>
+
+  <div id="createUserDiv" style="display: none">
+    <label style="font-family: 'Forte'; font-size: 38px; text-align: center"> Create user</label>
+    <br>
+    <br>
+
+    <div id="createUserDivInputs">
+
+      <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
+        <input id="FirstName" matInput placeholder="First name">
+      </mat-form-field>
+      <br>
+      <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
+        <input id="LastName" matInput placeholder="Last name">
+      </mat-form-field>
+      <br>
+      <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
+        <input id="userEmail" matInput placeholder="Email">
+      </mat-form-field>
+      <br>
+      <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
+        <input id="userPhone" matInput placeholder="Phone number">
+      </mat-form-field>
+      <br>
+      <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
+        <input id="userPassword" matInput placeholder="Password">
+      </mat-form-field>
+      <br>
+      <button type="submit" mat-button style="background-color: rgb(244,134,111); opacity: 90%">Create user</button>
+    </div>
   </div>
 </div>
