@@ -116,7 +116,7 @@ export class UserComponent implements OnInit{
             }
           );
         } else {
-          console.log("User already exists");
+          console.log("User  already exists");
         }
       },
       (error) => {
