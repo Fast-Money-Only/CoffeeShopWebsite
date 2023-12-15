@@ -24,8 +24,8 @@
 }
 
 .coffeeshopInformation{
-  height: 150px;
-  background-color: rgba(56, 48, 48, 0.10);
+  height: 135px;
+  background-color: rgba(38, 33, 33, 0.88);
   justify-items: center;
   display: grid;
   grid-row-gap: 20px;
@@ -39,6 +39,7 @@
 .coffeeshopInformationText{
   padding-top: 25px;
   font-family: "Baskerville Old Face";
-  font-size: 14px;
+  font-size: 15px;
+  color: white;
 }
 
