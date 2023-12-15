@@ -15,6 +15,8 @@ import {OrderModel} from "../order/order.Model";
 import {inputNames} from "@angular/cdk/schematics";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
+import {IngredientService} from "../services/ingredient.service";
+import {IngredientModel} from "../ingredient/ingredient.Model";
 
 @Component({
   selector: 'app-order-process',
@@ -33,22 +35,30 @@ import {ReactiveFormsModule} from "@angular/forms";
 export class OrderProcessComponent implements OnInit{
   coffeeData: any;
   cakeData: any;
+  ingredientData: any;
+  lastAddedFill: string = 'bottomOfCup';
   recommendedCake: any;
   selectedCoffeePlace: any;
+  selectedCup!: string;
   coffeePlaces: any;
+  customPrice: number = 25;
   total: number = 0;
+  ingredientsToAdd: IngredientModel[] = [];
   productsToAdd: ProductModel[] = [];
   currentUser: UserModel = new UserModel();
   subscription: Subscription = new Subscription();
 
   constructor(private storage: StorageService,
               private service: CoffeeService,
-              private cakeService: CakeService) {}
+              private cakeService: CakeService,
+              private ingredientService: IngredientService) {}
 
   ngOnInit(): void {
     this.service.getAllCoffees().subscribe(coffee => this.coffeeData = coffee);
     this.cakeService.getCakes().subscribe(cake => this.cakeData = cake);
     this.service.getCoffeePlaces().subscribe(cps => this.coffeePlaces = cps);
+    this.ingredientService.getIngredients().subscribe(ingr => this.ingredientData = ingr);
+
   }
 
 
@@ -133,6 +143,7 @@ export class OrderProcessComponent implements OnInit{
 
 
   setCup(cup: string) {
+    this.selectedCup = cup;
     let drinkDiv = document.getElementById('drinkCategory');
     // @ts-ignore
     drinkDiv.style.display = 'none';
@@ -145,5 +156,41 @@ export class OrderProcessComponent implements OnInit{
     contentDiv.style.width = '70%';
     // @ts-ignore
     contentDiv.style.marginTop = '10vh';
+  }
+
+  onCheck(event: any, ingredient: IngredientModel) {
+    let nyPris = this.customPrice;
+
+    // @ts-ignore
+    if (event.checked === false) {
+      this.ingredientsToAdd = this.ingredientsToAdd.filter(item => item.id !== ingredient.id);
+      nyPris = nyPris - 2;
+    } else {
+      this.ingredientsToAdd.push(ingredient);
+      nyPris = nyPris + 2;
+
+    }
+    this.customPrice = nyPris;
+  }
+
+  createFill(ingredient: IngredientModel){
+    let newDiv = document.createElement("div");
+    let newId = ingredient.name + 'fillDiv';
+    newDiv.id = newId;
+    newDiv.classList.add('fill');
+    newDiv.style.height = '20%';
+
+    if (ingredient.name == 'Espresso'){
+      newDiv.style.backgroundColor = '';
+    }
+
+    const currentDiv = document.getElementById(this.lastAddedFill);
+
+    // @ts-ignore
+    newDiv.style.bottom = currentDiv.style.height;
+
+    document.body.insertBefore(newDiv, currentDiv);
+
+    this.lastAddedFill = newId;
   }
 }
