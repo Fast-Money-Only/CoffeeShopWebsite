@@ -39,5 +39,9 @@ export class UserService {
   loginUser(email: string, password: string): Observable<Object>{
     return this.http.get(this.baseUrl + "/LoginUser/" + email + "/" + password);
   }
+
+  doesUserExist(email: string): Observable<any>{
+    return this.http.get(this.baseUrl + "/DoesUserExist/" + email);
+  }
 }
 
