@@ -29,29 +29,30 @@
     <br>
 
     <div id="createUserDivInputs">
-
+      <form #createUserForm="ngForm" (ngSubmit)="createUser(createUserForm)">
       <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
-        <input id="FirstName" matInput placeholder="First name">
+        <input name="userFirstName" ngModel matInput placeholder="First name">
       </mat-form-field>
       <br>
       <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
-        <input id="LastName" matInput placeholder="Last name">
+        <input name="userLastName" ngModel matInput placeholder="Last name">
       </mat-form-field>
       <br>
       <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
-        <input id="userEmail" matInput placeholder="Email">
+        <input name="userEmail" ngModel matInput placeholder="Email">
       </mat-form-field>
       <br>
       <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
-        <input id="userPhone" matInput placeholder="Phone number">
+        <input name="userPhone" ngModel matInput placeholder="Phone number">
       </mat-form-field>
       <br>
       <mat-form-field style="font-size: 18px; font-family: 'Arial'; margin-bottom: 1.5rem">
-        <input id="userPassword" matInput placeholder="Password">
+        <input name="userPassword" ngModel matInput placeholder="Password">
       </mat-form-field>
       <br>
 
       <button type="submit" mat-button style="background-color: rgb(244,134,111); opacity: 90%">Create user</button>
+      </form>
     </div>
   </div>
 </div>

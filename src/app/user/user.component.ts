@@ -13,7 +13,7 @@ import {NavigationExtras} from "@angular/router";
 import {MembershipModel} from "../membership/Membership.Model";
 import {StorageService} from "../storage.service";
 import {AppComponent} from "../app.component";
-import {empty} from "rxjs";
+import {catchError, empty, map, Observable, of} from "rxjs";
 
 
 
@@ -74,31 +74,75 @@ export class UserComponent implements OnInit{
     //this.storage.set('user', this.currentUser).subscribe(() => {console.log('User data saved in storage');});
   }
 
+  loginFromCreation(email:string, password:string): void{
+    this.service.loginUser(email,password).subscribe(currentUser => {this.currentUser = currentUser; console.log('WORKS');this.storage.set('user', this.currentUser).subscribe(() => {console.log('User data saved in storage');
+        this.router.navigate(['../test-c']); document.location.reload()})},
+      (error) =>{console.error('Error here:', error);
+      })
+  }
+
+
   logout(): void{
     this.storage.delete('user').subscribe(() => {console.log('Removed')});
   }
 
 
 
-
-
   // protected readonly valueOf = valueOf;
 
-  createUser(createUserForm: any) {
+  createUser(createUserForm: NgForm) {
     let user = new UserModel();
     let membership = new MembershipModel();
     membership.id = '4d07ca7e-aa29-456f-8808-27ea0dcfe096';
-    user.firstname = createUserForm.value.fname;
-    user.lastname = createUserForm.value.lname;
-    user.phone = createUserForm.value.telnr;
-    user.email = createUserForm.value.mail;
-    user.password = createUserForm.value.kode;
+    user.firstname = createUserForm.value.userFirstName;
+    user.lastname = createUserForm.value.userLastName;
+    user.phone = createUserForm.value.userPhone;
+    user.email = createUserForm.value.userEmail;
+    user.password = createUserForm.value.userPassword;
     user.membership = membership;
     console.log(user);
 
-    this.service.createUser(user).subscribe((response) =>
-    {console.log(response), this.ngOnInit()});
+    this.doesUserExist(createUserForm.value.userEmail).subscribe(
+      (exists: boolean) => {
+        if (!exists) {
+          this.service.createUser(user).subscribe(
+            (response) => {
+              console.log(response);
+              this.loginFromCreation(createUserForm.value.userEmail,createUserForm.value.userPassword);
+              this.ngOnInit();
+            },
+            (error) => {
+              console.log("ERROR CREATING USER", error);
+            }
+          );
+        } else {
+          console.log("User already exists");
+        }
+      },
+      (error) => {
+        console.log("Error checking user existence", error);
+      }
+    );
   }
 
+  doesUserExist(email: string): Observable<boolean> {
+    return this.service.doesUserExist(email).pipe(
+      map(() => {
+        return true;
+      }),
+      catchError((error) => {
+        if (error.status === 404) {
+          return of(false);
+        } else {
+          console.log("Error checking user existence", error);
+          return of(false);
+        }
+      })
+    );
+  }
+
+
+
   protected readonly empty = empty;
+  protected readonly document = document;
 }

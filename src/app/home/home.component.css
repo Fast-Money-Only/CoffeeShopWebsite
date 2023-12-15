@@ -23,4 +23,22 @@
   font-size: 18px;
 }
 
+.coffeeshopInformation{
+  height: 150px;
+  background-color: rgba(56, 48, 48, 0.10);
+  justify-items: center;
+  display: grid;
+  grid-row-gap: 20px;
+  grid-column-gap: 40px;
+  grid-template-columns: auto auto auto;
+  margin-top: 15px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.coffeeshopInformationText{
+  padding-top: 25px;
+  font-family: "Baskerville Old Face";
+  font-size: 14px;
+}
 
