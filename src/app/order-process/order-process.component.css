@@ -25,6 +25,7 @@ h3 {
     height: 70vh; /* % af skærm height */
     overflow: auto;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 
 }
 

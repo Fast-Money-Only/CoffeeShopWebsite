@@ -12,6 +12,9 @@ import {CakeModel} from "../cake/cake.Model";
 import {ProductModel} from "./product.Model";
 import {MatIconModule} from "@angular/material/icon";
 import {OrderModel} from "../order/order.Model";
+import {inputNames} from "@angular/cdk/schematics";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-order-process',
@@ -20,7 +23,9 @@ import {OrderModel} from "../order/order.Model";
     NgForOf,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule,
+    ReactiveFormsModule
   ],
   templateUrl: './order-process.component.html',
   styleUrl: './order-process.component.css'
@@ -32,7 +37,6 @@ export class OrderProcessComponent implements OnInit{
   selectedCoffeePlace: any;
   coffeePlaces: any;
   total: number = 0;
-  currentSelectedCoffee: any;
   productsToAdd: ProductModel[] = [];
   currentUser: UserModel = new UserModel();
   subscription: Subscription = new Subscription();
@@ -45,30 +49,6 @@ export class OrderProcessComponent implements OnInit{
     this.service.getAllCoffees().subscribe(coffee => this.coffeeData = coffee);
     this.cakeService.getCakes().subscribe(cake => this.cakeData = cake);
     this.service.getCoffeePlaces().subscribe(cps => this.coffeePlaces = cps);
-  }
-
-
-  selectButton(coffee: CoffeeModel){
-    let btns = document.getElementsByTagName("button");
-    // @ts-ignore
-    for (let btn of btns){
-      btn.classList.remove('selected');
-    }
-    let selectedBtn = document.getElementById(coffee.id);
-    // @ts-ignore
-    selectedBtn.classList.add('selected');
-    this.currentSelectedCoffee = coffee;
-  }
-
-  changeCoffee(coffee: CoffeeModel) {
-    this.selectButton(coffee);
-
-    const coffee_filling = document.querySelector(".filling");
-    // @ts-ignore
-    coffee_filling.classList.remove(this.currentSelectedCoffee.name);
-
-    // @ts-ignore
-    coffee_filling.classList.add(coffee.name);
   }
 
 
@@ -103,9 +83,9 @@ export class OrderProcessComponent implements OnInit{
     let chooseDiv = document.getElementById('menuCustomBtn');
     // @ts-ignore
     chooseDiv.style.display = 'none';
-    let buildCustomDiv = document.getElementById('buildCustomDiv');
+    let setCupDiv = document.getElementById('drinkCategory');
     // @ts-ignore
-    buildCustomDiv.style.display = 'block';
+    setCupDiv.style.display = 'block';
   }
 
   addCoffeeToOrder(coffee: CoffeeModel) {
@@ -149,5 +129,21 @@ export class OrderProcessComponent implements OnInit{
     ordre.userId = this.currentUser.id;
     ordre.coffeePlaceId = this.selectedCoffeePlace.id;
 
+  }
+
+
+  setCup(cup: string) {
+    let drinkDiv = document.getElementById('drinkCategory');
+    // @ts-ignore
+    drinkDiv.style.display = 'none';
+    let buildCustomDiv = document.getElementById('buildCustomDiv');
+    // @ts-ignore
+    buildCustomDiv.style.display = 'block';
+
+    let contentDiv = document.getElementById('content');
+    // @ts-ignore
+    contentDiv.style.width = '70%';
+    // @ts-ignore
+    contentDiv.style.marginTop = '10vh';
   }
 }

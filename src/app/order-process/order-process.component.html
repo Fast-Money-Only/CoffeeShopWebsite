@@ -16,6 +16,13 @@
             <button mat-button (click)="buildCustom()" >Build you own coffee</button>
         </div>
 
+        <div id="drinkCategory" style="display: none">
+            <br>
+            <h2>How would you like you drink?</h2>
+            <button mat-button (click)="setCup('cup')" >Hot</button>
+            <button mat-button (click)="setCup('glass')" >Cold</button>
+        </div>
+
         <div id="menuDiv" style="display:none">
 
             <div class="gridDisplay">
@@ -30,7 +37,7 @@
                             <mat-card *ngFor="let coffee of coffeeData">
                                 <mat-card-header style="text-align: left">
                                     <mat-card-title style="font-size: medium">{{coffee.name}}</mat-card-title>
-                                    <mat-card-subtitle>Pris her</mat-card-subtitle>
+                                    <mat-card-subtitle>{{coffee.price}},-</mat-card-subtitle>
                                 </mat-card-header>
                                 <mat-card-actions align="end">
                                     <button mat-button id="{{coffee.id}}" (click)="addCoffeeToOrder(coffee)">Add to order</button>
@@ -42,7 +49,7 @@
                             <mat-card *ngFor="let cake of cakeData">
                                 <mat-card-header style="text-align: left">
                                     <mat-card-title style="font-size: medium">{{cake.name}}</mat-card-title>
-                                    <mat-card-subtitle>Pris her</mat-card-subtitle>
+                                    <mat-card-subtitle>{{cake.price}},-</mat-card-subtitle>
                                 </mat-card-header>
                                 <mat-card-actions align="end">
                                     <button mat-button id="{{cake.id}}" (click)="addCakeToOrder(cake)">Add to order</button>
@@ -56,7 +63,7 @@
                     <h2>Your order:</h2>
                     <div>
                         <label>Time for pickup: </label>
-                        <input id="pickupInput" type="datetime-local">
+                        <input id="pickupInput" name="pickUpInput" type="datetime-local">
                     </div>
                     <br>
                     <div id="productDiv" class="scrollingDiv rowGap" style="width: 90%; margin: auto; height: 55vh">
@@ -80,7 +87,25 @@
         </div>
 
         <div id="buildCustomDiv" style="display: none">
+            <div class="gridDisplay">
+                <div>
+                    <p>jkdj</p>
+                    <div class="scrollingDiv rowGap">
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-title>Ingredint</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-actions align="end">
+                                <mat-checkbox formControlName="ingredient">Add</mat-checkbox>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
 
+                <div>
+                    <p>test</p>
+                </div>
+            </div>
         </div>
 
     </div>
