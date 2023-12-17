@@ -36,6 +36,14 @@ export class ProfileComponent implements OnInit{
     });
   }
 
+  logout(): void{
+    this.storage.delete('user').subscribe(() => {console.log('Removed')});
+  }
+
+  deleteUser(id: string): void{
+    this.service.deleteUser(id).subscribe((response) => {console.log(response);this.logout();document.location.reload()})
+  }
+
   updateUser(userForm: NgForm) {
     let userToUpdate = this.currentUser;
 
