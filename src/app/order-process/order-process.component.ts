@@ -139,6 +139,7 @@ export class OrderProcessComponent implements OnInit{
     ordre.userId = this.currentUser.id;
     ordre.coffeePlaceId = this.selectedCoffeePlace.id;
 
+
   }
 
 
@@ -161,36 +162,62 @@ export class OrderProcessComponent implements OnInit{
   onCheck(event: any, ingredient: IngredientModel) {
     let nyPris = this.customPrice;
 
-    // @ts-ignore
-    if (event.checked === false) {
+    if (!event.checked) {
       this.ingredientsToAdd = this.ingredientsToAdd.filter(item => item.id !== ingredient.id);
       nyPris = nyPris - 2;
+      this.removeFill(ingredient);
     } else {
       this.ingredientsToAdd.push(ingredient);
       nyPris = nyPris + 2;
-
+      this.createFill(ingredient);
     }
     this.customPrice = nyPris;
+
+
   }
 
   createFill(ingredient: IngredientModel){
-    let newDiv = document.createElement("div");
-    let newId = ingredient.name + 'fillDiv';
+    const newDiv = document.createElement("div");
+    let newId = ingredient.id + 'fillDiv';
     newDiv.id = newId;
     newDiv.classList.add('fill');
     newDiv.style.height = '20%';
+    newDiv.style.background = '#6F4E37';
 
     if (ingredient.name == 'Espresso'){
-      newDiv.style.backgroundColor = '';
+      newDiv.style.backgroundColor = '#6F4E37';
     }
+
+    if (ingredient.name == 'Water'){
+      newDiv.style.backgroundColor = '#D4F1F9';
+    }
+
+    if (ingredient.name == 'Milk'){
+      newDiv.style.backgroundColor = 'white';
+    }
+
+    if (ingredient.name == 'Caramel sirup'){
+      newDiv.style.backgroundColor = '#FFD59A';
+      newDiv.style.height = '5%';
+    }
+
 
     const currentDiv = document.getElementById(this.lastAddedFill);
 
     // @ts-ignore
     newDiv.style.bottom = currentDiv.style.height;
 
-    document.body.insertBefore(newDiv, currentDiv);
+
+    // @ts-ignore
+    document.getElementById('fillingDiv').insertBefore(newDiv, currentDiv);
+
 
     this.lastAddedFill = newId;
   }
+
+  removeFill(ingredient: IngredientModel){
+    // @ts-ignore
+    document.getElementById(ingredient.id + 'fillDiv').style.display = 'none';
+  }
+
 }
