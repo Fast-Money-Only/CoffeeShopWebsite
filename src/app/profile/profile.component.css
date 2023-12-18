@@ -35,6 +35,6 @@ h2 {
 }
 
 .scrollingDiv {
-    height: 88vh; /* % af skærm height */
+    height: 80vh; /* % af skærm height */
     overflow: auto;
 }

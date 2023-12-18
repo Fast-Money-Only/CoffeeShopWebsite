@@ -6,6 +6,8 @@ import {UserModel} from "../user/User.Model";
 import {Subscription} from "rxjs";
 import {UserService} from "../services/user.service";
 import {OrderService} from "../services/order.service";
+import {IngredientModel} from "../ingredient/ingredient.Model";
+import {ProductModel} from "../order-process/product.Model";
 
 
 @Component({
@@ -18,6 +20,7 @@ export class ProfileComponent implements OnInit{
   subscription: Subscription = new Subscription();
   orders: any;
   products: any;
+  productsPrice: ProductModel[] = [];
   price: number = 0;
 
 
@@ -103,9 +106,13 @@ export class ProfileComponent implements OnInit{
   getProductsFromOrder(id: string){
     this.price = 0;
     this.orderService.getOrderProducts(id).subscribe(products => this.products = products);
-    for (let product of this.products){
-      this.price = this.price + product.ProductPrice;
-    }
+    setTimeout( () => {
+      for (let product of this.products){
+        console.log(product.price);
+        this.price = this.price + product.price;
+      }
+    }, 100);
+
   }
 
   seKvitteringer() {
