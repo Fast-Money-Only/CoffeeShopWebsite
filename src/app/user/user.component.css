@@ -45,3 +45,16 @@
     padding-top: 1.5rem;
     text-align: center;
 }
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-style: none;
+  background-color: transparent;
+}
+
+.back:hover {
+  cursor: pointer;
+}
+
