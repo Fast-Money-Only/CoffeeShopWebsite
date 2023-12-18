@@ -63,7 +63,7 @@
         <h3 style="color: #444444">Your receipts</h3>
         <br>
         <button (click)="seKvitteringer()">See receipts</button>
-        <div class="rowGap">
+        <div class="scrollingDiv rowGap">
             <mat-card *ngFor="let order of orders">
                 <mat-card-header>
                     <mat-card-title>{{order.id}}</mat-card-title>

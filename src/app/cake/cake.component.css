@@ -1,4 +1,4 @@
-.scrolling-div {
+.scrollingDiv {
   height: 88vh; /* % af skærmstørrelse */
   overflow: auto;
 }

@@ -33,3 +33,8 @@ h2 {
     flex-direction: column;
     gap: 10px;
 }
+
+.scrollingDiv {
+    height: 88vh; /* % af skærm height */
+    overflow: auto;
+}
