@@ -108,7 +108,7 @@ export class OrderProcessComponent implements OnInit{
     let product: ProductModel = new ProductModel();
     product.ProductName = coffee.name;
     product.ProductNumber = coffee.id;
-    product.ProductPrice = coffee.price;
+    product.Price = coffee.price;
     this.productsToAdd.push(product);
     this.total = this.total + coffee.price;
 
@@ -135,7 +135,7 @@ export class OrderProcessComponent implements OnInit{
     let product: ProductModel = new ProductModel();
     product.ProductName = cake.name;
     product.ProductNumber = cake.id;
-    product.ProductPrice = cake.price;
+    product.Price = cake.price;
     this.productsToAdd.push(product);
     this.total = this.total + cake.price;
 
@@ -162,7 +162,7 @@ export class OrderProcessComponent implements OnInit{
     this.productsToAdd = this.productsToAdd.filter(item => item.ProductId !== product.ProductId);
     // @ts-ignore
     let oldValue: HTMLInputElement = document.getElementById(product.ProductId + 'quantity');
-    this.total = this.total - (product.ProductPrice * Number(oldValue.getAttribute("previousValue")));
+    this.total = this.total - (product.Price * Number(oldValue.getAttribute("previousValue")));
 
   }
 
@@ -178,9 +178,12 @@ export class OrderProcessComponent implements OnInit{
     let pickupInput: HTMLInputElement = document.getElementById('pickupInput');
     ordre.pickup = pickupInput.value.toString().slice(0, 19).replace('T', ' ');
 
+    console.log("Hello")
     this.orderService.addOrder(ordre).subscribe((response) => {console.log(response)});
 
     for (let product of this.productsToAdd){
+
+      console.log(product);
 
       this.orderService.addProduct(product).subscribe((response) => {console.log(response)});
       // @ts-ignore
@@ -191,10 +194,7 @@ export class OrderProcessComponent implements OnInit{
       orderProduct.quantity = Number(quantity.value);
 
       this.orderService.addOrderProducts(orderProduct).subscribe((response) => {console.log(response)});
-
-
     }
-
   }
 
 
@@ -321,10 +321,10 @@ export class OrderProcessComponent implements OnInit{
 
     if (newValue > Number(oldValue.getAttribute("previousValue"))){
       console.log('højere')
-      this.total = this.total - (product.ProductPrice * (Number(quantityValue) - 1));
-      this.total = this.total + (product.ProductPrice * Number(quantityValue));
+      this.total = this.total - (product.Price * (Number(quantityValue) - 1));
+      this.total = this.total + (product.Price * Number(quantityValue));
     }else {
-      this.total = this.total - (product.ProductPrice * Number(quantityValue));
+      this.total = this.total - (product.Price * Number(quantityValue));
       console.log('lavere')
     }
 

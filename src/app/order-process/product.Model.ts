@@ -4,5 +4,5 @@ export class ProductModel {
     ProductId: string = Guid.create().toString();
     ProductName: string = "";
     ProductNumber: string = ""; //Id fra kaffe, kage, costum kaffe etc.
-    ProductPrice: number = 0;
+    Price: number = 0;
 }
