@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../services/order.service";
 import {OrderModel} from "./order.Model";
-import {OrderProductModel} from "./orderProduct.Model";
+import {OrderProductDTOModel} from "./orderProductDTO.Model";
 
 @Component({
   selector: 'app-order',

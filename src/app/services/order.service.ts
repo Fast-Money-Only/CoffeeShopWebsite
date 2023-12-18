@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {OrderModel} from "../order/order.Model";
+import {ProductModel} from "../order-process/product.Model";
+import {OrderProductModel} from "../order-process/orderProduct.Model";
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +56,13 @@ export class OrderService {
 
   getUserOrders(id: string) : Observable<Object>{
     return this.http.get(this.baseUrl + "/GetUserOrders/" + id)
+  }
+
+  addProduct(product: ProductModel): Observable<any>{
+    return this.http.post('http://localhost:5056/api/Product', product);
+  }
+
+  addOrderProducts(orderProduct: OrderProductModel):Observable<any> {
+    return this.http.post(this.baseUrl + '/OrderProducts/', orderProduct);
   }
 }

@@ -13,9 +13,13 @@ import {ProductModel} from "./product.Model";
 import {MatIconModule} from "@angular/material/icon";
 import {OrderModel} from "../order/order.Model";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {IngredientService} from "../services/ingredient.service";
 import {IngredientModel} from "../ingredient/ingredient.Model";
+import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
+import {OrderService} from "../services/order.service";
+import {OrderProductModel} from "./orderProduct.Model";
+import {CoffeePlaceModel} from "../coffee-place/CoffeePlace.Model";
 
 @Component({
   selector: 'app-order-process',
@@ -26,7 +30,8 @@ import {IngredientModel} from "../ingredient/ingredient.Model";
     MatCardModule,
     MatIconModule,
     MatCheckboxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   templateUrl: './order-process.component.html',
   styleUrl: './order-process.component.css'
@@ -37,7 +42,7 @@ export class OrderProcessComponent implements OnInit{
   ingredientData: any;
   lastAddedFill: string = 'bottomOfCup';
   recommendedCake: any;
-  selectedCoffeePlace: any;
+  selectedCoffeePlace: CoffeePlaceModel = new CoffeePlaceModel();
   selectedCup!: string;
   coffeePlaces: any;
   customPrice: number = 25;
@@ -50,18 +55,20 @@ export class OrderProcessComponent implements OnInit{
   constructor(private storage: StorageService,
               private service: CoffeeService,
               private cakeService: CakeService,
-              private ingredientService: IngredientService) {}
+              private ingredientService: IngredientService,
+              private orderService: OrderService) {}
 
   ngOnInit(): void {
     this.service.getAllCoffees().subscribe(coffee => this.coffeeData = coffee);
     this.cakeService.getCakes().subscribe(cake => this.cakeData = cake);
     this.service.getCoffeePlaces().subscribe(cps => this.coffeePlaces = cps);
     this.ingredientService.getIngredients().subscribe(ingr => this.ingredientData = ingr);
-
+    this.setUser();
   }
 
 
-  choosePlace(place: any) {
+
+  choosePlace(place: CoffeePlaceModel) {
     this.selectedCoffeePlace = place;
     let placeDiv = document.getElementById('placeDiv');
     // @ts-ignore
@@ -140,16 +147,53 @@ export class OrderProcessComponent implements OnInit{
 
   }
 
-  removeProduct(Id: string) {
-    this.productsToAdd = this.productsToAdd.filter(item => item.ProductId !== Id);
+  setUser() {
+    this.subscription = this.storage.get('user').subscribe((user: UserModel) => {
+      if (user) {
+        this.currentUser = user;
+        console.log('Retrieved User:', this.currentUser);
+      } else {
+        console.log('User not found in storage');
+      }
+    });
+  }
+
+  removeProduct(product: ProductModel) {
+    this.productsToAdd = this.productsToAdd.filter(item => item.ProductId !== product.ProductId);
+    // @ts-ignore
+    let oldValue: HTMLInputElement = document.getElementById(product.ProductId + 'quantity');
+    this.total = this.total - (product.ProductPrice * Number(oldValue.getAttribute("previousValue")));
+
   }
 
 
   createOrder() {
     let ordre = new OrderModel();
-    ordre.userId = this.currentUser.id;
-    ordre.coffeePlaceId = this.selectedCoffeePlace.id;
+    let coffeePlace: CoffeePlaceModel;
+    coffeePlace = this.selectedCoffeePlace;
 
+    ordre.userId = this.currentUser.id;
+    ordre.coffeePlaceId = coffeePlace.coffeePlaceId;
+    // @ts-ignore
+    let pickupInput: HTMLInputElement = document.getElementById('pickupInput');
+    ordre.pickup = pickupInput.value.toString().slice(0, 19).replace('T', ' ');
+
+    this.orderService.addOrder(ordre).subscribe((response) => {console.log(response)});
+
+    for (let product of this.productsToAdd){
+
+      this.orderService.addProduct(product).subscribe((response) => {console.log(response)});
+      // @ts-ignore
+      let quantity: HTMLInputElement = document.getElementById(product.ProductId + 'quantity');
+      let orderProduct = new OrderProductModel();
+      orderProduct.orderId = ordre.id;
+      orderProduct.productId = product.ProductId;
+      orderProduct.quantity = Number(quantity.value);
+
+      this.orderService.addOrderProducts(orderProduct).subscribe((response) => {console.log(response)});
+
+
+    }
 
   }
 
@@ -261,4 +305,29 @@ export class OrderProcessComponent implements OnInit{
     hideDiv.style.display = 'none';
   }
 
+  changeQuantity(product: ProductModel, quantityValue: string) {
+    if (quantityValue == '0'){
+      this.removeProduct(product)
+    }
+
+
+    // @ts-ignore
+    let oldValue: HTMLInputElement = document.getElementById(product.ProductId + 'quantity');
+    console.log('gammel værdi: ' + oldValue.getAttribute("previousValue"));
+
+    let newValue = Number(quantityValue);
+    console.log('ny værdi: ' + newValue);
+
+
+    if (newValue > Number(oldValue.getAttribute("previousValue"))){
+      console.log('højere')
+      this.total = this.total - (product.ProductPrice * (Number(quantityValue) - 1));
+      this.total = this.total + (product.ProductPrice * Number(quantityValue));
+    }else {
+      this.total = this.total - (product.ProductPrice * Number(quantityValue));
+      console.log('lavere')
+    }
+
+    oldValue.setAttribute("previousValue", quantityValue);
+  }
 }

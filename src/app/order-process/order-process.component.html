@@ -75,8 +75,8 @@
                                 <mat-card-title>{{product.ProductName}}</mat-card-title>
                             </mat-card-header>
                             <mat-card-actions align="end">
-                                <input type="number" value="1">
-                                <button mat-icon-button color="warn" (click)="removeProduct(product.ProductId)" ><mat-icon>delete</mat-icon></button>
+                                <input #testQuantity type="number" previousValue="1" value="1" id="{{product.ProductId}}quantity" (change)="changeQuantity(product, testQuantity.value)">
+                                <button mat-icon-button color="warn" (click)="removeProduct(product)" ><mat-icon>delete</mat-icon></button>
                             </mat-card-actions>
                         </mat-card>
                     </div>
