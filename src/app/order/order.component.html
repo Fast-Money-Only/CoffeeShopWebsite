@@ -1,9 +1,11 @@
-
-<div class="gridDisplay">
-  <div id="pending" >
+<div style="display: flex; justify-content: space-evenly">
+  <button mat-button *ngFor="let place of coffeePlaces" id="placeBtn{{place.id}}" (click)="choosePlace(place)">{{place.coffeePlaceName}}</button>
+</div>
+<div id="ordersContent" class="gridDisplay">
+  <div id="pending">
     <h3>Pending</h3>
-    <div class="rowGap">
-      <mat-card *ngFor="let order of pendingData">
+    <div class="rowGap scrollingDiv">
+      <mat-card *ngFor="let order of pendingFromPlace">
         <mat-card-header>
           <mat-card-title>Order:</mat-card-title>
           <mat-card-subtitle>Pickup at: <span style="font-weight: bold">{{order.pickup.substring(0,16)}}</span></mat-card-subtitle>
@@ -21,10 +23,10 @@
     </div>
 
   </div>
-  <div id="done"  >
+  <div id="done">
     <h3>Done</h3>
-    <div class="rowGap" >
-      <mat-card *ngFor="let order of doneData">
+    <div class="rowGap scrolling-div" >
+      <mat-card *ngFor="let order of doneFromPlace">
         <mat-card-header>
           <mat-card-title>Order:</mat-card-title>
           <mat-card-subtitle>Pickup at: <span style="font-weight: bold">{{order.pickup.substring(0,16)}}</span></mat-card-subtitle>

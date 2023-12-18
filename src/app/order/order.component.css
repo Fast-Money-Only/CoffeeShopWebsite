@@ -10,6 +10,10 @@ h3 {
   grid-template-columns: auto auto;
 }
 
+mat-card{
+  width: 95%;
+}
+
 .rowGap {
   display: flex;
   flex-direction: column;
@@ -20,4 +24,9 @@ h3 {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+.scrollingDiv {
+  height: 88vh; /* % af skærm height */
+  overflow: auto;
 }

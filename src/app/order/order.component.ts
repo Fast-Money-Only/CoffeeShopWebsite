@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../services/order.service";
 import {OrderModel} from "./order.Model";
 import {OrderProductDTOModel} from "./orderProductDTO.Model";
+import {CoffeePlaceModel} from "../coffee-place/CoffeePlace.Model";
+import {ProductModel} from "../order-process/product.Model";
 
 @Component({
   selector: 'app-order',
@@ -13,8 +15,11 @@ export class OrderComponent implements OnInit{
   pendingData: any;
   doneData: any;
   coffeePlaces: any;
+  pendingFromPlace: OrderModel[] = [];
+  doneFromPlace: OrderModel[] = [];
   products: any;
   selectedPlace!: string;
+  selectedCoffeePlace: CoffeePlaceModel = new CoffeePlaceModel();
 
 
   constructor(private service: OrderService) {
@@ -50,5 +55,25 @@ export class OrderComponent implements OnInit{
     order.isDone = true;
     this.service.updateOrder(order.id, order)
         .subscribe((response) => {console.log(response); this.ngOnInit()});
+  }
+
+  choosePlace(place: CoffeePlaceModel) {
+    this.selectedCoffeePlace = place;
+    this.showOrderForPlace();
+  }
+
+  showOrderForPlace(){
+    this.doneFromPlace = [];
+    this.pendingFromPlace = [];
+    for (let order of this.pendingData){
+      if (order.coffeePlaceId == this.selectedCoffeePlace.coffeePlaceId){
+        this.pendingFromPlace.push(order);
+      }
+    }
+    for (let order of this.doneData){
+      if (order.coffeePlaceId == this.selectedCoffeePlace.coffeePlaceId){
+        this.doneFromPlace.push(order);
+      }
+    }
   }
 }
