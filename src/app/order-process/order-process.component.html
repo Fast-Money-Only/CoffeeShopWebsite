@@ -86,10 +86,10 @@
                                 <mat-card-subtitle>Based on you choice, we recommend :</mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-actions>
-                                <div *ngFor="let cake of recommendedCake">
-                                    <h3>{{cake.name}}</h3>
-                                    <button mat-button (click)="addCakeToOrder(cake)">Add</button>
-                                </div>
+                                <mat-card-header *ngFor="let cake of recommendedCake" style="display: flex; justify-content: space-between; margin: auto">
+                                    <h3 style="padding: 5px">{{cake.name}}</h3>
+                                    <button mat-raised-button (click)="addCakeToOrder(cake)">Add</button>
+                                </mat-card-header>
                             </mat-card-actions>
                         </mat-card>
                     </div>
