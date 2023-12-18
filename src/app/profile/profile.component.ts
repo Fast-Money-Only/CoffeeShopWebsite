@@ -5,6 +5,7 @@ import {StorageService} from "../storage.service";
 import {UserModel} from "../user/User.Model";
 import {Subscription} from "rxjs";
 import {UserService} from "../services/user.service";
+import {OrderService} from "../services/order.service";
 
 
 @Component({
@@ -15,10 +16,15 @@ import {UserService} from "../services/user.service";
 export class ProfileComponent implements OnInit{
   currentUser: UserModel = new UserModel();
   subscription: Subscription = new Subscription();
+  orders: any;
+  products: any;
+  price: number = 0;
 
 
 
-  constructor(private storage: StorageService, private service: UserService) {
+  constructor(private storage: StorageService,
+              private service: UserService,
+              private orderService: OrderService) {
   }
 
   ngOnInit(): void {
@@ -71,5 +77,30 @@ export class ProfileComponent implements OnInit{
         console.log('Passwords dont match');
       }
     }
+  }
+
+  showProducts(id: string) {
+    let contentToHide = document.getElementsByClassName("cont");
+    // @ts-ignore
+    for (let content of contentToHide) {
+      // @ts-ignore
+      content.style.display = 'none';
+    }
+    this.getProductsFromOrder(id);
+    let contentToShow = document.getElementById(id + "cont");
+    // @ts-ignore
+    contentToShow.style.display = "block";
+  }
+
+  getProductsFromOrder(id: string){
+    this.price = 0;
+    this.orderService.getOrderProducts(id).subscribe(products => this.products = products);
+    for (let product of this.products){
+      this.price = this.price + product.ProductPrice;
+    }
+  }
+
+  seKvitteringer() {
+    this.orderService.getUserOrders(this.currentUser.id).subscribe(orders => this.orders = orders);
   }
 }

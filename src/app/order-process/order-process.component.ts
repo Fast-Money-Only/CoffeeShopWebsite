@@ -111,6 +111,18 @@ export class OrderProcessComponent implements OnInit{
       // @ts-ignore
       productDiv.scrollTop = productDiv.scrollHeight;
     }, 100);
+
+    this.service
+        .getRecommendedCake(coffee.id)
+        .subscribe(recommendedCake => this.recommendedCake = recommendedCake);
+    let recmdDiv = document.getElementById('recommendedDiv');
+    // @ts-ignore
+    recmdDiv.style.display = 'block';
+
+    setTimeout(function () {
+      // @ts-ignore
+      recmdDiv.style.display = 'none';
+    }, 10000);
   }
 
   addCakeToOrder(cake: CakeModel) {
@@ -192,20 +204,39 @@ export class OrderProcessComponent implements OnInit{
       newDiv.style.backgroundColor = '#D4F1F9';
     }
 
-    if (ingredient.name == 'Milk'){
+    if (ingredient.name == 'Foamed milk'){
       newDiv.style.backgroundColor = 'white';
     }
 
-    if (ingredient.name == 'Caramel sirup'){
+    if (ingredient.name == 'Milk'){
+      newDiv.style.backgroundImage = 'linear-gradient(#D4Ac82, white)';
+    }
+
+    if (ingredient.name == 'Caramel Syrup'){
       newDiv.style.backgroundColor = '#FFD59A';
       newDiv.style.height = '5%';
     }
 
+    if (ingredient.name == 'Chocolate Syrup'){
+      newDiv.style.backgroundColor = '#7B3F00';
+      newDiv.style.height = '5%';
+    }
+
+    if (ingredient.name == 'Whiskey'){
+      newDiv.style.backgroundColor = '#E38200';
+      newDiv.style.height = '15%';
+    }
+
+    if (ingredient.name == 'Bailey'){
+      newDiv.style.backgroundColor = '#D5A777';
+      newDiv.style.height = '15%';
+    }
+
+    if (ingredient.name == 'Ice cubes'){
+      newDiv.style.height = '0';
+    }
 
     const currentDiv = document.getElementById(this.lastAddedFill);
-
-    // @ts-ignore
-    newDiv.style.bottom = currentDiv.style.height;
 
 
     // @ts-ignore
@@ -218,6 +249,17 @@ export class OrderProcessComponent implements OnInit{
   removeFill(ingredient: IngredientModel){
     // @ts-ignore
     document.getElementById(ingredient.id + 'fillDiv').style.display = 'none';
+  }
+
+  goBack(hide: string, show: string){
+    let showDiv = document.getElementById(show);
+    let hideDiv = document.getElementById(hide);
+
+    // @ts-ignore
+    showDiv.style.display = 'block';
+
+    // @ts-ignore
+    hideDiv.style.display = 'none';
   }
 
 }

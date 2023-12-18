@@ -10,6 +10,7 @@
         </div>
 
         <div id="menuCustomBtn" style="display: none">
+            <button class="back" (click)="goBack('menuCustomBtn', 'placeDiv')"><mat-icon>keyboard_arrow_left</mat-icon></button>
             <br>
             <h2>Choose how you would like to order:</h2>
             <button mat-button (click)="showMenu()" >From Menu</button>
@@ -17,6 +18,7 @@
         </div>
 
         <div id="drinkCategory" style="display: none">
+            <button class="back" (click)="goBack('drinkCategory', 'menuCustomBtn')"><mat-icon>keyboard_arrow_left</mat-icon></button>
             <br>
             <h2>How would you like you drink?</h2>
             <button mat-button (click)="setCup('coffeeCup')" >Hot</button>
@@ -28,8 +30,9 @@
             <div class="gridDisplay">
                 <div>
                     <div>
-                        <a style="text-decoration: none" href="#kaffeOversigt"><button mat-flat-button style="width: 50%">Coffee</button></a>
-                        <a style="text-decoration: none" href="#kageOversigt"><button mat-flat-button style="width: 50%">Cake</button></a>
+                        <button class="back" (click)="goBack('menuDiv', 'menuCustomBtn')"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                        <a style="text-decoration: none" href="#kaffeOversigt"><button mat-flat-button style="width: 40%">Coffee</button></a>
+                        <a style="text-decoration: none" href="#kageOversigt"><button mat-flat-button style="width: 45%">Cake</button></a>
                         <hr>
                     </div>
                     <div class="scrollingDiv rowGap">
@@ -66,7 +69,7 @@
                         <input id="pickupInput" name="pickUpInput" type="datetime-local">
                     </div>
                     <br>
-                    <div id="productDiv" class="scrollingDiv rowGap" style="width: 90%; margin: auto; height: 55vh">
+                    <div id="productDiv" class="scrollingDiv rowGap" style="width: 90%; margin: auto; height: 35vh">
                         <mat-card *ngFor="let product of productsToAdd">
                             <mat-card-header style="text-align: left">
                                 <mat-card-title>{{product.ProductName}}</mat-card-title>
@@ -74,6 +77,19 @@
                             <mat-card-actions align="end">
                                 <input type="number" value="1">
                                 <button mat-icon-button color="warn" (click)="removeProduct(product.ProductId)" ><mat-icon>delete</mat-icon></button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div id="recommendedDiv" style="width: 90%; margin: auto; height: 20vh; display: none">
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-subtitle>Based on you choice, we recommend :</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-actions>
+                                <div *ngFor="let cake of recommendedCake">
+                                    <h3>{{cake.name}}</h3>
+                                    <button mat-button (click)="addCakeToOrder(cake)">Add</button>
+                                </div>
                             </mat-card-actions>
                         </mat-card>
                     </div>
@@ -89,7 +105,8 @@
         <div id="buildCustomDiv" style="display: none">
             <div class="gridDisplay">
                 <div>
-                    <p>jkdj</p>
+                    <button class="back" (click)="goBack('buildCustomDiv', 'drinkCategory')"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                    <h2>Choose ingredients</h2>
                     <div class="scrollingDiv rowGap">
                         <mat-card *ngFor="let ingredient of ingredientData">
                             <mat-card-header>
@@ -103,7 +120,7 @@
                 </div>
 
                 <div>
-                    <p>test</p>
+                    <h2>Fill your coffee!</h2>
                     <div class="cup">
                         <div id="chosenCup" class="{{selectedCup}}">
                             <div id="fillingDiv" class="filling" >

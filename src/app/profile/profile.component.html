@@ -54,6 +54,29 @@
     </div>
 
     <div>
-        <p>kvitteriner her</p>
+        <br>
+        <h3 style="color: #444444">Your receipts</h3>
+        <br>
+        <button (click)="seKvitteringer()">See receipts</button>
+        <div class="rowGap">
+            <mat-card *ngFor="let order of orders">
+                <mat-card-header>
+                    <mat-card-title>{{order.id}}</mat-card-title>
+                    <mat-card-subtitle>Date: {{order.created}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content class="cont" id="{{order.id}}cont" style="display: none">
+                    <br>
+                    <div *ngFor="let product of products">
+                        <mat-card-subtitle >{{product.quantity}}x {{product.name}}</mat-card-subtitle>
+                    </div>
+                    <mat-card-title>Total: {{price}}</mat-card-title>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-button (click)="showProducts(order.id)">Details</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+
     </div>
 </div>
