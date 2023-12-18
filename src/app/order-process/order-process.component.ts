@@ -249,6 +249,7 @@ export class OrderProcessComponent implements OnInit{
 
     if (ingredient.name == 'Foamed milk'){
       newDiv.style.backgroundColor = 'white';
+
     }
 
     if (ingredient.name == 'Milk'){
