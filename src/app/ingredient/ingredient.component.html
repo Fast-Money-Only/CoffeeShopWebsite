@@ -1,11 +1,27 @@
-<h3>Ingredients</h3>
+<h3>Ingredients
+  <button mat-flat-button style="margin-left: 10px;" (click)="showAddIngredient()">
+    <mat-icon>add</mat-icon>
+  </button>
+</h3>
 <div class="scrolling-div rowGap">
+
+  <div id="addIngredientDiv" style="background-color: rgba(204,192,167,20%);" hidden="hidden">
+    <form #addIngredientForm="ngForm" (ngSubmit)="addIngredient(addIngredientForm)">
+      <mat-form-field style="margin-left: 5px;margin-top: 3px">
+        <input type="text" id="ingredientName" name="ingredientNameInput" ngModel matInput placeholder="Ingredient name">
+      </mat-form-field>
+      <button mat-button type="submit" style="margin-left: 7px" (click)="showAddIngredient()" >
+        <mat-icon>add</mat-icon>
+      </button>
+    </form>
+  </div>
+
   <mat-card *ngFor="let ingredient of data" style="background-color: rgba(204,192,167,20%)">
     <mat-card-header>
       <mat-card-title>{{ingredient.name}}</mat-card-title>
     </mat-card-header>
     <mat-card-actions align="end">
-      <button mat-button>Delete</button>
+      <button mat-button (click)="deleteIngredient(ingredient.id)">Delete</button>
     </mat-card-actions>
   </mat-card>
 </div>

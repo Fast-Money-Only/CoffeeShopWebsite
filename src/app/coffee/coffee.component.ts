@@ -14,6 +14,7 @@ import {CoffeeModel} from "./coffee.Model";
 export class CoffeeComponent implements OnInit{
   data: any;
   recommendedCake: any;
+  coffeeBool: boolean = false;
 
   constructor(private service: CoffeeService) {
   }
@@ -60,7 +61,43 @@ export class CoffeeComponent implements OnInit{
     }
   }
 
-  onDelete(id: string) {
 
+  showAddCoffee(): void{
+      if(this.coffeeBool == false) {
+        let contentToShow = document.getElementById("addCoffeeDiv");
+        // @ts-ignore
+        contentToShow.style.display = "block";
+        this.coffeeBool = true;
+      } else {
+        let contentToHide = document.getElementById('addCoffeeDiv');
+        // @ts-ignore
+        contentToHide.style.display = 'none';
+        this.coffeeBool = false;
+
+        let cofName = document.getElementById('coffeeName');
+        let cofPrice = document.getElementById('coffeePrice');
+
+
+        // @ts-ignore
+        cofName.innerText = '';
+        // @ts-ignore
+        cofPrice.style.content = '';
+
+        this.ngOnInit();
+      }
   }
+
+  addCoffee(addCoffeeForm: any): void{
+    let coffee = new CoffeeModel();
+    coffee.name = addCoffeeForm.value.coffeeNameInput;
+    coffee.price = addCoffeeForm.value.coffeePriceInput;
+
+    this.service.addCoffee(coffee).subscribe((response) => {console.log(response);this.ngOnInit()})
+  }
+
+
+  onDelete(id: string) {
+    this.service.deleteCoffee(id).subscribe((response) => {
+      console.log(response); this.ngOnInit()});
+    }
 }

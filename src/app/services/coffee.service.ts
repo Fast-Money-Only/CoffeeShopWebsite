@@ -36,4 +36,8 @@ export class CoffeeService {
     return this.http.get("http://localhost:5056/api/CoffeePlace/GetCoffeePlaces");
   }
 
+  deleteCoffee(id: string) : Observable<Object>{
+    return this.http.delete(this.baseUrl + "/" + id)
+  }
+
 }
