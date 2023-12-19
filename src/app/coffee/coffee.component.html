@@ -1,0 +1,45 @@
+<h3>Coffees
+  <button mat-flat-button style="margin-left: 10px;" (click)="showAddCoffee()">
+    <mat-icon>add</mat-icon>
+  </button>
+</h3>
+
+<div class="scrolling-div">
+  <div class="rowGap">
+
+    <div id="addCoffeeDiv" style="background-color: rgba(204,192,167,20%);" hidden="hidden">
+      <form #addCoffeeForm="ngForm" (ngSubmit)="addCoffee(addCoffeeForm)">
+      <mat-form-field style="margin-left: 5px;margin-top: 3px">
+        <input type="text" id="coffeeName" name="coffeeNameInput" ngModel matInput placeholder="Coffee name">
+      </mat-form-field>
+      <br>
+      <mat-form-field style="margin-left: 5px">
+        <input id="coffeePrice" type="number" name="coffeePriceInput" ngModel matInput placeholder="Coffee price">
+      </mat-form-field>
+      <button mat-button type="submit" style="margin-left: 7px" (click)="showAddCoffee()" >
+        <mat-icon>add</mat-icon>
+      </button>
+      </form>
+    </div>
+
+    <mat-card id="{{coffee.id}}card" *ngFor="let coffee of data" style="background-color: rgba(204,192,167,20%)">
+      <div id="{{coffee.id}}coffees">
+        <mat-card-header>
+          <mat-card-title>{{coffee.name}}</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div id="{{coffee.id}}cakes" style="display: none">
+        <mat-card-header>
+          <mat-card-title>Recommended cakes</mat-card-title>
+          <mat-card-subtitle *ngFor="let cake of recommendedCake">{{cake.name}}</mat-card-subtitle>
+        </mat-card-header>
+      </div>
+      <mat-card-actions align="end" class="columnGap">
+        <button id="{{coffee.id}}delete" mat-button (click)="onDelete(coffee.id)">Delete</button>
+        <button id="{{coffee.id}}flip" mat-button style="background-color: rgba(204,192,167,70%); color: white" (click)="flipCard(coffee)" >Recommended cakes</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<!-- Lav en div mere for user login, display den div der skal frem i forhold til hvor man er på websiden -->
+

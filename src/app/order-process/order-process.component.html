@@ -1,0 +1,140 @@
+<div class="container">
+    <img src="assets/bg.png" style="  left: 0; top: 0; width: 100%">
+
+    <div id="content" class="center" style="margin-top: 20vh; background-color: rgba(255,255,255,90%)">
+
+        <div id="placeDiv">
+            <br>
+            <h2>Order your coffee at:</h2>
+            <button mat-button *ngFor="let place of coffeePlaces" id="placeBtn{{place.id}}" (click)="choosePlace(place)">{{place.coffeePlaceName}}</button>
+        </div>
+
+        <div id="menuCustomBtn" style="display: none">
+            <button class="back" (click)="goBack('menuCustomBtn', 'placeDiv')"><mat-icon>keyboard_arrow_left</mat-icon></button>
+            <br>
+            <h2>Choose how you would like to order:</h2>
+            <button mat-button (click)="showMenu()" >From Menu</button>
+            <button mat-button (click)="buildCustom()" >Build you own coffee</button>
+        </div>
+
+        <div id="drinkCategory" style="display: none">
+            <button class="back" (click)="goBack('drinkCategory', 'menuCustomBtn')"><mat-icon>keyboard_arrow_left</mat-icon></button>
+            <br>
+            <h2>How would you like you drink?</h2>
+            <button mat-button (click)="setCup('coffeeCup')" >Hot</button>
+            <button mat-button (click)="setCup('coffeeGlass')" >Cold</button>
+        </div>
+
+        <div id="menuDiv" style="display:none">
+
+            <div class="gridDisplay">
+                <div>
+                    <div>
+                        <button class="back" (click)="goBack('menuDiv', 'menuCustomBtn')"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                        <a style="text-decoration: none" href="#kaffeOversigt"><button mat-flat-button style="width: 40%">Coffee</button></a>
+                        <a style="text-decoration: none" href="#kageOversigt"><button mat-flat-button style="width: 45%">Cake</button></a>
+                        <hr>
+                    </div>
+                    <div class="scrollingDiv rowGap">
+                        <div id="kaffeOversigt" class="rowGap">
+                            <mat-card *ngFor="let coffee of coffeeData">
+                                <mat-card-header style="text-align: left">
+                                    <mat-card-title style="font-size: medium">{{coffee.name}}</mat-card-title>
+                                    <mat-card-subtitle>{{coffee.price}},-</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-actions align="end">
+                                    <button mat-button id="{{coffee.id}}" (click)="addCoffeeToOrder(coffee)">Add to order</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                        <hr style="width: 100%">
+                        <div id="kageOversigt" class="rowGap">
+                            <mat-card *ngFor="let cake of cakeData">
+                                <mat-card-header style="text-align: left">
+                                    <mat-card-title style="font-size: medium">{{cake.name}}</mat-card-title>
+                                    <mat-card-subtitle>{{cake.price}},-</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-actions align="end">
+                                    <button mat-button id="{{cake.id}}" (click)="addCakeToOrder(cake)">Add to order</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="kurv">
+                    <h2>Your order:</h2>
+                    <div>
+                        <label>Time for pickup: </label>
+                        <input id="pickupInput" name="pickUpInput" type="datetime-local">
+                    </div>
+                    <br>
+                    <div id="productDiv" class="scrollingDiv rowGap" style="width: 90%; margin: auto; height: 35vh">
+                        <mat-card *ngFor="let product of productsToAdd">
+                            <mat-card-header style="text-align: left">
+                                <mat-card-title>{{product.ProductName}}</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-actions align="end">
+                                <input #testQuantity type="number" previousValue="1" value="1" id="{{product.ProductId}}quantity" (change)="changeQuantity(product, testQuantity.value)">
+                                <button mat-icon-button color="warn" (click)="removeProduct(product)" ><mat-icon>delete</mat-icon></button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div id="recommendedDiv" style="width: 90%; margin: auto; height: 20vh; display: none">
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-subtitle>Based on you choice, we recommend :</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-actions>
+                                <mat-card-header *ngFor="let cake of recommendedCake" style="display: flex; justify-content: space-between; margin: auto">
+                                    <h3 style="padding: 5px">{{cake.name}}</h3>
+                                    <button mat-raised-button (click)="addCakeToOrder(cake)">Add</button>
+                                </mat-card-header>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div>
+                        <label>Total: {{total}}</label>
+                        <button mat-button (click)="createOrder()">Checkout</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="buildCustomDiv" style="display: none">
+            <div class="gridDisplay" >
+                <div>
+                    <button class="back" (click)="goBack('buildCustomDiv', 'drinkCategory')"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                    <h2>Choose ingredients</h2>
+                    <div class="scrollingDiv rowGap">
+                        <mat-card *ngFor="let ingredient of ingredientData">
+                            <mat-card-header>
+                                <mat-card-title>{{ingredient.name}}</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-actions align="end">
+                                <mat-checkbox id="{{ingredient.id}}check" (change)="onCheck($event, ingredient)">Add</mat-checkbox>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Fill your coffee!</h2>
+                    <div class="cup">
+                        <div id="chosenCup" class="{{selectedCup}}">
+                            <div id="fillingDiv" class="filling" >
+                                <div class="fill" id="bottomOfCup" style="height: 0"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Total: {{customPrice}}</label>
+                        <button mat-button (click)="createOrder()">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

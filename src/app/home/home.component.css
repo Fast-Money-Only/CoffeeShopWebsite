@@ -1,0 +1,45 @@
+.gridDisplay {
+  justify-items: center;
+  display: grid;
+  grid-row-gap: 25px;
+  grid-column-gap: 16px;
+  grid-template-columns: auto auto auto;
+  margin-top: 60px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.coffeeInformation {
+  font-family: 'Baskerville Old Face';
+  font-size: 24px;
+  text-align: center;
+}
+
+.coffeeText{
+  text-align: center;
+  font-family: "Baskerville Old Face";
+  font-size: 18px;
+}
+
+.coffeeshopInformation{
+  height: 135px;
+  background-color: rgba(38, 33, 33, 0.88);
+  justify-items: center;
+  display: grid;
+  grid-row-gap: 20px;
+  grid-column-gap: 40px;
+  grid-template-columns: auto auto auto;
+  margin-top: 15px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.coffeeshopInformationText{
+  padding-top: 25px;
+  font-family: "Baskerville Old Face";
+  font-size: 15px;
+  color: white;
+}
+

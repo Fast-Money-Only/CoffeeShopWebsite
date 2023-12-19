@@ -1,0 +1,58 @@
+<p>test-c works!</p>
+
+
+<button (click)="setUser()"></button>
+<label >{{currentUser.firstname}}</label>
+
+<div id="placeDiv">
+  <h3>Order your coffee at:</h3>
+  <button *ngFor="let place of coffeePlaces" id="placeBtn{{place.id}}" (click)="choosePlace(place)">{{place.coffeePlaceName}}</button>
+</div>
+
+<div id="menuCustomBtn" style="display: none">
+  <button (click)="showMenu()" >Menu</button>
+  <button (click)="buildCustom()" >Build you own coffee</button>
+</div>
+
+<div id="menuDiv" style="display:none">
+  <div class="opsæt">
+    <div class="options scrollingDiv">
+      <mat-card *ngFor="let coffee of data">
+        <mat-card-header>{{coffee.name}}</mat-card-header>
+        <mat-card-actions align="end">
+          <button id="{{coffee.id}}" (click)="changeCoffee(coffee)">Add to order</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="container">
+      <div id="cupTypeDiv" class="coffeeCup">
+        <div class="filling reset latte">
+          <div class="coffee">Coffee</div>
+          <div class="water">Water</div>
+          <div class="liquor">Liquor</div>
+          <div class="milk">Milk</div>
+          <div class="whipped_cream">Whipped cream</div>
+          <div class="milk_foam">Milk foam</div>
+          <div class="steamed_milk">Steamed milk</div>
+          <div class="chocolate">Chocolate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="buildCustomDiv" style="display:none">
+
+</div>
+
+<div class="test" style="display:none">
+  <div class="options">
+  </div>
+  <div class="container">
+    <div class="coffeeCup">
+
+      <div class="plate"></div>
+    </div>
+  </div>
+</div>

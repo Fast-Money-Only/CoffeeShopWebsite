@@ -1,0 +1,21 @@
+.scrolling-div {
+  height: 88vh; /* % af skærm height */
+  overflow: auto;
+}
+
+.rowGap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.columnGap {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+h3 {
+  color: rgb(128, 128, 128);
+  font-family: sans-serif;
+}

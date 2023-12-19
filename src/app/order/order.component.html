@@ -1,0 +1,44 @@
+<div style="display: flex; justify-content: space-evenly">
+  <button mat-button *ngFor="let place of coffeePlaces" id="placeBtn{{place.id}}" (click)="choosePlace(place)">{{place.coffeePlaceName}}</button>
+</div>
+<div id="ordersContent" class="gridDisplay">
+  <div id="pending">
+    <h3>Pending</h3>
+    <div class="rowGap scrollingDiv">
+      <mat-card *ngFor="let order of pendingFromPlace">
+        <mat-card-header>
+          <mat-card-title>Order:</mat-card-title>
+          <mat-card-subtitle>Pickup at: <span style="font-weight: bold">{{order.pickup.substring(0,16)}}</span></mat-card-subtitle>
+          <mat-card-subtitle>Created at: <span style="font-weight: bold">{{order.created.substring(0,16)}}</span></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="content" id="{{order.id}}content" style="display: none">
+          <br>
+          <mat-card-subtitle *ngFor="let product of products">{{product.quantity}}x {{product.name}}</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions align="end" class="columnGap">
+          <button mat-button style="background-color: rgba(204,192,167,70%); color: white" (click)="showProducts(order.id)" >View order</button>
+          <button mat-button style="background-color: rgb(204,192,167); color: white" (click)="moveToDone(order)">Ready For Pickup</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+  </div>
+  <div id="done">
+    <h3>Done</h3>
+    <div class="rowGap scrolling-div" >
+      <mat-card *ngFor="let order of doneFromPlace">
+        <mat-card-header>
+          <mat-card-title>Order:</mat-card-title>
+          <mat-card-subtitle>Pickup at: <span style="font-weight: bold">{{order.pickup.substring(0,16)}}</span></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="content" id="{{order.id}}content" style="display: none">
+          <br>
+          <mat-card-subtitle *ngFor="let product of products">{{product.quantity}}x {{product.name}}</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button style="background-color: rgba(204,192,167,70%); color: white" (click)="showProducts(order.id)" >View</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
