@@ -1,0 +1,35 @@
+<div class="container">
+    <img src="assets/bg.png" style="left: 0; top: 0; width: 100%" alt="Background">
+
+    <div class="center scrollingDiv">
+        <div>
+            <br>
+            <h1>See our selection from our menu</h1>
+            <h4 style="color: #444444">Notice: Changes can occur for each individual coffee place</h4>
+        </div>
+        <hr>
+        <div>
+            <h1>Coffee</h1>
+            <hr>
+            <div class="rowGap">
+                <mat-card *ngFor="let coffee of coffeeData">
+                    <mat-card-header>
+                        <mat-card-title>{{coffee.name}}</mat-card-title>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h1>Cakes</h1>
+            <hr>
+            <div class="rowGap">
+                <mat-card *ngFor="let cake of cakeData">
+                    <mat-card-header>
+                        <mat-card-title>{{cake.name}}</mat-card-title>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

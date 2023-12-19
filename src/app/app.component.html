@@ -7,6 +7,7 @@
     <li><button *ngIf="currentUser.membershipId == '55774005-b6bc-4b6d-8dd6-9cd903a81432' "id="btn3" (click)="navigate('comp3', 'btn3')">Admin</button></li>
     <li><button *ngIf="(currentUser.firstname != '') && (currentUser.membershipId != '55774005-b6bc-4b6d-8dd6-9cd903a81432')"id="btn6" (click)="navigate('comp6', 'btn6')">Order</button></li>
     <li><button id="btn4" (click)="navigate('comp4', 'btn4')">Feed</button></li>
+    <li><button id="btn8" (click)="navigate('comp8', 'btn8')">Menu</button></li>
     <li><button id="btn5" (click)="navigate('comp5', 'btn5')" class="active">Home</button></li>
   </ul>
 </nav>
@@ -24,6 +25,8 @@
 <app-post id="comp4" style="display: none" class="component">
   <p>post her</p>
 </app-post>
+<app-menu id="comp8" style="display: none; width: 100%; position: absolute; left: 0;" class="component">
+</app-menu>
 <div id="comp5" style="display: block; width: 100%; position: absolute; left: 0;" class="component">
 <app-home></app-home>
 </div>

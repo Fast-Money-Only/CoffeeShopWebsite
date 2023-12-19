@@ -22,6 +22,7 @@ import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {OrderProcessComponent} from "./order-process/order-process.component";
 import {MatIconModule} from "@angular/material/icon";
+import {MenuComponent} from "./menu/menu.component";
 //import {StorageMap} from "@ngx-pwa/local-storage";
 
 
@@ -55,6 +56,7 @@ import {MatIconModule} from "@angular/material/icon";
     OrderProcessComponent,
     HomeComponent,
     MatIconModule,
+    MenuComponent,
 
   ],
   providers: [],
