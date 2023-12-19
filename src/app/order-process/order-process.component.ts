@@ -194,6 +194,7 @@ export class OrderProcessComponent implements OnInit{
       orderProduct.quantity = Number(quantity.value);
 
       this.orderService.addOrderProducts(orderProduct).subscribe((response) => {console.log(response)});
+      document.location.reload();
     }
   }
 
